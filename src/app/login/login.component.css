@@ -1,0 +1,22 @@
+body {
+    /* height: 100vh; */
+    background-color: whitesmoke;
+}
+
+mat-card {
+    max-width: 430px;
+    margin: 10rem auto;
+    text-align: center;
+    /* box-shadow: 1px solid black; */
+}
+  
+mat-form-field {
+    display: block;
+}
+
+.form {
+    padding: 1.4rem;
+    padding-top: 0px;
+    height: 22.2rem;
+    /* width: 25rem; */
+}
