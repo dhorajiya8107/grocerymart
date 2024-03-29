@@ -1,5 +1,4 @@
 body {
-    /* height: 100vh; */
     background-color: whitesmoke;
 }
 
@@ -7,16 +6,27 @@ mat-card {
     max-width: 430px;
     margin: 10rem auto;
     text-align: center;
-    /* box-shadow: 1px solid black; */
 }
   
 mat-form-field {
     display: block;
+    margin-bottom: 0.3rem;
+}
+
+mat-error {
+    margin-left: -1rem;
+    font-weight: bold;
 }
 
 .form {
     padding: 1.4rem;
     padding-top: 0px;
-    height: 22.2rem;
-    /* width: 25rem; */
+}
+
+input.ng-invalid.ng-touched {
+    color: red;
+}
+
+.hint {
+    font-size: 0.9rem;
 }
