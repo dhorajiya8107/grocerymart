@@ -2,8 +2,8 @@
     <mat-toolbar color="primary" class="mat-elevation-z8">
       <span>Angular</span>
       <span class="example-spacer"></span>
-      <button routerLink="/home" mat-button class="me-3 link">Home</button>
-      <button mat-raised-button color="accent" class="btn me-4" routerLink="/login">Login</button>
-      <!-- <button mat-raised-button color="accent" class="button me-2">Logout</button> -->
+      <button routerLink="/home" mat-button class="me-3 link" *ngIf="isLoggedIn">Home</button>
+      <button mat-raised-button color="accent" class="btn me-4" *ngIf="!isLoggedIn" routerLink="/login">Login</button>
+      <button mat-raised-button color="accent" class="button me-2" *ngIf="isLoggedIn" (click)="onLogout()">Logout</button>
     </mat-toolbar>
 </div>
