@@ -5,11 +5,16 @@
         <h2 class="mb-4 mt-3">Login</h2>
         <p class="err">{{errMsg}}</p>
         <mat-form-field class="email">
+          <mat-label>Email</mat-label>
           <input matInput type="email" formControlName="email" placeholder="Email">
           <mat-error *ngIf="authForm.get('email').errors?.['required'] || authForm.get('email').errors?.['email']">*Email is Required</mat-error>
         </mat-form-field>
         <mat-form-field class="password">
-          <input matInput type="password" formControlName="password" placeholder="Password">
+          <mat-label>Password</mat-label>
+          <input matInput type="{{hidePassword ? 'password' : 'text'}}" formControlName="password" placeholder="Password">
+            <button mat-icon-button matSuffix (click)="togglePasswordVisibility()" type="button">
+                <mat-icon class="eye">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
           <mat-error *ngIf="authForm.get('password').errors?.['required']">*Password is Required</mat-error>
         </mat-form-field>
         <span>

@@ -36,6 +36,10 @@ input.ng-invalid.ng-touched {
     font-size: 0.9rem;
 }
 
+.eye {
+    color: rgb(131, 130, 130);
+}
+
 .errMsg {
     color: red;
     text-align: start;

@@ -32,6 +32,10 @@ input.ng-invalid.ng-touched {
     color: red;
 }
 
+.eye {
+    color: rgb(131, 130, 130);
+}
+
 .hint {
     font-size: 0.9rem;
 }

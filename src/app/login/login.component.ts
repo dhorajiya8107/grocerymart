@@ -13,6 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class LoginComponent {
   authForm: any;
   errMsg: string = "";
+  hidePassword: boolean = true;
 
   constructor(
     public formBuilder: FormBuilder,
@@ -34,6 +35,11 @@ export class LoginComponent {
       duration: 3000,
     })
   }
+
+  togglePasswordVisibility() {
+    this.hidePassword = !this.hidePassword;
+  }
+
 
   OnFormSubmit(){
     const { email, password } = this.authForm.value;

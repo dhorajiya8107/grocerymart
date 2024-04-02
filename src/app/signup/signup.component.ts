@@ -19,6 +19,7 @@ export class SignupComponent {
   errMsg: any = null;
   isRoleInvalid: boolean = false;
   btnClicked: boolean = false;
+  hidePassword: boolean = true;
 
   constructor(
     public formBuilder: FormBuilder,
@@ -49,13 +50,16 @@ export class SignupComponent {
       idField: 'RoleId',
       textField: 'RoleName'
     };
-
   }
 
   displaySnackBar(message: string){
     this.snackBar.open(message, 'Close', {
       duration: 3000,
     })
+  }
+
+  togglePasswordVisibility() {
+    this.hidePassword = !this.hidePassword;
   }
 
   onSelectRole() {
@@ -74,10 +78,10 @@ export class SignupComponent {
       return;
     }
     else{
-      const roleid = roleId[0].RoleId;
+      // const roleid = roleId[0].RoleId;
       const Contact = contact.toString();
       
-      this.authService.signup(username, email, password, fullname, Contact, roleid).subscribe({
+      this.authService.signup(username, email, password, fullname, Contact, roleId).subscribe({
         next: (res) => {
           console.log(res);   
           this.authForm.reset();

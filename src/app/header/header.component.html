@@ -1,10 +1,14 @@
 <div class="navbar">
     <mat-toolbar color="primary" class="mat-elevation-z8">
       <mat-icon>home</mat-icon>
-      <span class="ms-1">Angular App</span>
+      <span class="ms-1">My App</span>
       <span class="example-spacer"></span>
       <button routerLink="/home" mat-button class="me-3 link" *ngIf="isLoggedIn">Home</button>
-      <button mat-raised-button color="accent" class="btn me-4" *ngIf="!isLoggedIn" routerLink="/login">Login</button>
-      <button mat-raised-button color="accent" class="button me-2" *ngIf="isLoggedIn" (click)="onLogout()">Logout</button>
+      <button mat-raised-button color="accent" class="btn me-4" *ngIf="!isLoggedIn" routerLink="/login">Login 
+        <mat-icon>person</mat-icon>
+      </button>
+      <button mat-raised-button color="accent" class="button me-2" *ngIf="isLoggedIn" (click)="onLogout()">Logout
+        <mat-icon>logout</mat-icon>
+      </button>
     </mat-toolbar>
 </div>
