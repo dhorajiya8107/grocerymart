@@ -1,0 +1,50 @@
+<div class="body mt-5 pt-2">
+    <mat-card>
+      <mat-card-content>
+        <form class="form" [formGroup]="authForm" (ngSubmit)="OnFormSubmit()">
+          <h2 class="title mt-3">Sign up</h2>
+          <p class="err">{{errMsg}}</p>
+          <mat-form-field>
+              <input matInput type="text" formControlName="username" placeholder="Username">
+              <mat-error *ngIf="authForm.get('username').errors?.['required']">*Username is Required</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="email" formControlName="email" placeholder="Email">
+            <mat-error *ngIf="authForm.get('email').errors?.['required'] || authForm.get('email').errors?.['email']">*Email is Required</mat-error>
+          </mat-form-field>
+          <mat-form-field class="password">
+            <input matInput type="password" formControlName="password" placeholder="Password">
+            <mat-error *ngIf="authForm.get('password').errors?.['required']">*Password is Required</mat-error>
+            <mat-error *ngIf="authForm.get('password').errors?.['pattern']" class="mb-5">*Password must be atleast of 8 characters and should contain 1 uppercase and 1 special character.</mat-error>
+          </mat-form-field>
+          <mat-form-field [style.margin-top.px]="authForm.get('password').errors?.['pattern'] ? 25 : 0">
+            <input matInput type="text" formControlName="fullname" placeholder="Full Name">
+            <mat-error *ngIf="authForm.get('fullname').errors?.['required']">*Full Name is Required</mat-error>
+        </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" formControlName="contact" placeholder="Phone Number">
+            <mat-error *ngIf="authForm.get('contact').errors?.['required']">*Phone Number is Required</mat-error>
+            <mat-error *ngIf="authForm.get('contact').errors?.['pattern']">*Phone Number must be of 10 digits</mat-error>
+        </mat-form-field>
+        <div class="mt-1 dropdown">
+          <ng-multiselect-dropdown
+              [settings]="roleDropDown"
+              [data]="roleResponse"
+              formControlName="roleId"
+              class="custom-dropdown"
+              [placeholder]="'Select Role'"
+              (onSelect)="onSelectRole()"
+              (onDeSelect)="onDeSelectRole()"
+              >
+            </ng-multiselect-dropdown>
+            <mat-error *ngIf="isRoleInvalid || (authForm.get('roleId').errors?.['required'] && btnClicked)" class="errMsg pt-1" style="background-color: white;">*Please select a role</mat-error>
+        </div>
+          <button mat-raised-button color="primary" type="submit" class="form-control mb-3 mt-4">Signup</button>  
+
+          <p>Already have an account?
+            <a routerLink="/login" class="text-decoration-none">Login Here</a>
+          </p>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>

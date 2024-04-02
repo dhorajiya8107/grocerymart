@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { BehaviorSubject, catchError, tap, throwError } from "rxjs";
@@ -65,8 +65,14 @@ export class AuthService {
         return user ? user.Token : null;
     }
 
-    handleSignupError(err:any){
-        return throwError(() => err.error.ServiceObject.Description);
+    handleSignupError(err: HttpErrorResponse){
+        let errorMessage = 'An unknown error occurred';
+            if (err.error && err.error.ServiceObject && err.error.ServiceObject.Description) {
+                errorMessage = err.error.ServiceObject.Description;
+            } else if (err.error && err.error[0] && err.error[0].Description) {
+                errorMessage = err.error[0].Description;
+            }
+        return throwError(() => errorMessage);
     }
      
     handleLoginError(err:any){

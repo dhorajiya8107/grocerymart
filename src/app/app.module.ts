@@ -15,6 +15,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AuthInterceptor } from './services/auth-interceptor.service';
 import { ApiInterceptor } from './services/api-interceptor.service';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ApiInterceptor } from './services/api-interceptor.service';
     LoginComponent,
     HeaderComponent,
     HomeComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

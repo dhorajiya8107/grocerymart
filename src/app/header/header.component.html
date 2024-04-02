@@ -1,6 +1,7 @@
-<div>
+<div class="navbar">
     <mat-toolbar color="primary" class="mat-elevation-z8">
-      <span>Angular</span>
+      <mat-icon>home</mat-icon>
+      <span class="ms-1">Angular App</span>
       <span class="example-spacer"></span>
       <button routerLink="/home" mat-button class="me-3 link" *ngIf="isLoggedIn">Home</button>
       <button mat-raised-button color="accent" class="btn me-4" *ngIf="!isLoggedIn" routerLink="/login">Login</button>

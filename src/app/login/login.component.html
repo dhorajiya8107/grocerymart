@@ -2,47 +2,23 @@
   <mat-card>
     <mat-card-content>
       <form class="form" [formGroup]="authForm" (ngSubmit)="OnFormSubmit()">
-        <h2 class="mb-4 mt-3">{{ isLoginMode ? 'Login' : 'Sign up' }}</h2>
-        <!-- <mat-error>
-          Email and Password were not recognized
-        </mat-error> -->
+        <h2 class="mb-4 mt-3">Login</h2>
         <p class="err">{{errMsg}}</p>
-        <mat-form-field *ngIf="!isLoginMode">
-            <input matInput type="text" formControlName="username" placeholder="Username">
-            <mat-error *ngIf="authForm.get('username').errors?.['required']">*Username is Required</mat-error>
-        </mat-form-field>
-        <mat-form-field>
+        <mat-form-field class="email">
           <input matInput type="email" formControlName="email" placeholder="Email">
-          <mat-error *ngIf="authForm.get('email').errors?.['required']">*Email is Required</mat-error>
+          <mat-error *ngIf="authForm.get('email').errors?.['required'] || authForm.get('email').errors?.['email']">*Email is Required</mat-error>
         </mat-form-field>
         <mat-form-field class="password">
-          <input matInput type="password" formControlName="password" #input minlength="6" placeholder="Password">
+          <input matInput type="password" formControlName="password" placeholder="Password">
           <mat-error *ngIf="authForm.get('password').errors?.['required']">*Password is Required</mat-error>
         </mat-form-field>
-        <a routerLink="/forgotPassword" class="fp" *ngIf="isLoginMode">Forgot Your Password?</a>
-        <mat-form-field *ngIf="!isLoginMode">
-          <input matInput type="text" formControlName="fullname" placeholder="Full Name">
-          <mat-error *ngIf="authForm.get('fullname').errors?.['required']">*Full Name is Required</mat-error>
-      </mat-form-field>
-        <mat-form-field *ngIf="!isLoginMode">
-          <input matInput type="text" formControlName="contact" placeholder="Phone Number">
-          <mat-error *ngIf="authForm.get('contact').errors?.['required']">*Phone Number is Required</mat-error>
-          <mat-error *ngIf="authForm.get('contact').errors?.['pattern']">*Phone Number must be of 10 digits</mat-error>
-      </mat-form-field>
-      <label for="" class="role" *ngIf="!isLoginMode" style="margin-left: -17rem">Select Role:</label>
-      <div class="mt-1" *ngIf="!isLoginMode">
-        <ng-multiselect-dropdown
-            [settings]="roleDropDown"
-            [data]="roleResponse"
-            formControlName="roleId"
-            >
-          </ng-multiselect-dropdown>
-          <p class="errMsg">{{ errorMessage }}</p>
-      </div>
-        <button mat-raised-button color="primary" type="submit" class="form-control mb-3 mt-3">{{ isLoginMode ? 'Login' : 'Signup' }}</button>    
+        <span>
+          <a routerLink="/forgotPassword" class="text-decoration-none">Forgot Your Password?</a>
+        </span>
+        <button mat-raised-button color="primary" type="submit" class="form-control mb-3 mt-4">Login</button>    
         
-        <p>{{isLoginMode ? 'Do not have an account yet?' : 'Already have an account?'}}
-          <a routerLink="/login" class="text-decoration-none" (click)="onSwitchMode()">{{isLoginMode ? 'Signup' : 'Login'}} Here</a>
+        <p>Do not have an account yet?
+          <a routerLink="/signup" class="text-decoration-none">Signup Here</a>
         </p>
       </form>
     </mat-card-content>

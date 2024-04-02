@@ -5,3 +5,11 @@
 .link {
     font-size: 1rem;
 }
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 0px 0px;
+}
