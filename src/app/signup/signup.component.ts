@@ -45,11 +45,11 @@ export class SignupComponent {
       this.roleResponse = this.roleResponse.ServiceObject;
     })
     
-    this.roleDropDown = {
-      singleSelection: true,
-      idField: 'RoleId',
-      textField: 'RoleName'
-    };
+    // this.roleDropDown = {
+    //   singleSelection: true,
+    //   idField: 'RoleId',
+    //   textField: 'RoleName'
+    // };
   }
 
   displaySnackBar(message: string){
@@ -62,19 +62,18 @@ export class SignupComponent {
     this.hidePassword = !this.hidePassword;
   }
 
-  onSelectRole() {
-    this.isRoleInvalid = false;
-  }
+  // onSelectRole() {
+  //   this.isRoleInvalid = false;
+  // }
 
-  onDeSelectRole() {
-    this.isRoleInvalid = true;
-  }
+  // onDeSelectRole() {
+  //   this.isRoleInvalid = true;
+  // }
 
   OnFormSubmit(){
     this.btnClicked = true;
     const { username, email, password, fullname, contact, roleId } = this.authForm.value;
-    console.log(this.authForm.value);
-    if(username == null || email == null ||  password == null || fullname == null || contact == null || roleId == null || roleId == ""){
+    if(username == null || email == null ||  password == null || fullname == null || contact == null || roleId == null){
       return;
     }
     else{
