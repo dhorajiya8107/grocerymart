@@ -11,7 +11,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from "@angular/material/core";
+import { NgxMatFileInputModule } from '@angular-material-components/file-input';
+
 
 @NgModule({
     exports: [
@@ -27,7 +31,10 @@ import {MatSelectModule} from '@angular/material/select';
         MatMenuModule,
         MatTableModule,
         MatSnackBarModule,
-        MatSelectModule
+        MatSelectModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        NgxMatFileInputModule
     ]
 })
 

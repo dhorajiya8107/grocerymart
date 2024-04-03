@@ -1,0 +1,75 @@
+<div class="body mt-5 pt-2">
+    <mat-card>
+      <mat-card-content>
+        <form class="form" [formGroup]="productForm" (ngSubmit)="OnFormSubmit()">
+          <h2 class="title mt-3">Add Product</h2>
+          <p class="err">{{errMsg}}</p>
+
+          <div class="row">
+            <div class="col-6">
+              <mat-form-field>
+                <mat-label>Product Name</mat-label>
+                <input matInput type="text" formControlName="ProductName">
+                <mat-error *ngIf="productForm.get('ProductName').errors?.['required']">*Product Name is Required</mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Description</mat-label>
+                <input matInput type="text" formControlName="ProductDescription">
+                <mat-error *ngIf="productForm.get('ProductDescription').errors?.['required']">*Description is Required</mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Price</mat-label>
+                <input matInput type="number" formControlName="Price">
+                <mat-error *ngIf="productForm.get('Price').errors?.['required']">*Price is Required</mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Buckle Number</mat-label>
+                <input matInput type="text" formControlName="BuckleNumber">
+                <mat-error *ngIf="productForm.get('BuckleNumber').errors?.['required']">*Buckle Number is Required</mat-error>
+              </mat-form-field>
+            </div>
+
+
+            <div class="col-6">
+              <mat-form-field>
+                <mat-label>Quantity</mat-label>
+                <input matInput type="number" formControlName="Quantity">
+                <mat-error *ngIf="productForm.get('Quantity').errors?.['required']">*Quantity is Required</mat-error>
+              </mat-form-field>
+              <!-- <div class="mb-4">
+                  <input class="form-control file" type="file" formControlName="Image"  (change)="onFileSelected($event)" accept="image/*">
+                  <mat-error *ngIf="productForm.get('Image').errors?.['required']">*Image is Required</mat-error>
+               
+              </div> -->
+
+              <mat-form-field>
+                <ngx-mat-file-input class="file" formControlName="Image">
+                </ngx-mat-file-input>
+             </mat-form-field>
+    
+              <mat-form-field>
+                <mat-label>Manufactured At</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="ManifacturedAt">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="productForm.get('ManifacturedAt').hasError('required')">Manufacture Date is required</mat-error>
+              </mat-form-field>     
+              
+              <mat-form-field>
+                <mat-label>Expires At</mat-label>
+                <input matInput [matDatepicker]="picker1" formControlName="ExpireAt">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+                <mat-error *ngIf="productForm.get('ExpireAt').hasError('required')">Expire Date is required</mat-error>
+              </mat-form-field>
+
+            </div>
+          </div>
+
+
+          
+          <button mat-raised-button color="primary" type="submit" class="form-control mb-3 mt-1">Submit</button>  
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>

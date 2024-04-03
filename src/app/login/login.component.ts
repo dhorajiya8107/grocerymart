@@ -42,26 +42,21 @@ export class LoginComponent {
 
 
   OnFormSubmit(){
-    const { email, password } = this.authForm.value;
-    if(email == null || password == null){
-      return;
-    }
-    else{
-      this.authService.login(email, password).subscribe({
-        next: (res) => {
-          console.log(res);
-          this.authForm.reset();
-          this.router.navigate(['/home']);
-          this.displaySnackBar("Login successful");
-        },
-        error: (errMsg) => {
-          this.errMsg = errMsg;
-          setTimeout(() => {
-            this.errMsg = null;
-          }, 3000); 
-          console.log(errMsg);
-        }
-      })
-    }
+    if(!this.authForm.valid) return;
+    this.authService.login(this.authForm.value).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.authForm.reset();
+        this.router.navigate(['/home']);
+        this.displaySnackBar("Login successful");
+      },
+      error: (errMsg) => {
+        this.errMsg = errMsg;
+        setTimeout(() => {
+          this.errMsg = null;
+        }, 3000); 
+        console.log(errMsg);
+      }
+    })
   }
 }

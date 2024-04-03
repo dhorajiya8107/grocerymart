@@ -16,16 +16,14 @@ export class AuthService {
     ){}
     user = new BehaviorSubject<User>(null);
 
-    signup(username, email, password, fullname, contact, roleid){
-        const data = { UserName: username, Email: email, Password: password, FullName: fullname, Contact: contact, RoleId: roleid, returnSecureToken: true };
+    signup(data){
         return this.http.post(`${api}/RegisterNewUser`, data)
         .pipe(catchError(this.handleSignupError), tap((res) => {
             return res;
         }))
     }
 
-    login(email, password){
-        const data = { Email: email, Password: password, returnSecureToken: true };
+    login(data){
         return this.http.post(`${api}/Login`, data)
         .pipe(catchError(this.handleLoginError), tap((res) => {
             this.handleCreateUser(res);

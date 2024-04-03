@@ -16,6 +16,10 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { AuthInterceptor } from './services/auth-interceptor.service';
 import { ApiInterceptor } from './services/api-interceptor.service';
 import { SignupComponent } from './signup/signup.component';
+import { ProductsComponent } from './products/products.component';
+import { CreateProductComponent } from './products/create-product/create-product.component';
+import { CommonModule } from '@angular/common';
+import { ListProductComponent } from './products/list-product/list-product.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,10 @@ import { SignupComponent } from './signup/signup.component';
     HeaderComponent,
     HomeComponent,
     ForgotPasswordComponent,
-    SignupComponent
+    SignupComponent,
+    ProductsComponent,
+    CreateProductComponent,
+    ListProductComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +42,7 @@ import { SignupComponent } from './signup/signup.component';
     BrowserAnimationsModule,
     HttpClientModule,
     NgMultiSelectDropDownModule.forRoot(),
+    CommonModule
   ],
   providers: [
     provideAnimations(),

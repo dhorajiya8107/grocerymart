@@ -4,6 +4,9 @@
       <span class="ms-1">My App</span>
       <span class="example-spacer"></span>
       <button routerLink="/home" mat-button class="me-3 link" *ngIf="isLoggedIn">Home</button>
+      <button routerLink="/createProduct" mat-button class="me-3 link" *ngIf="isLoggedIn">Add Product</button>
+      <button routerLink="/products" mat-button class="me-3 link" *ngIf="isLoggedIn">Products</button>
+      <button routerLink="/productList" mat-button class="me-3 link" *ngIf="isLoggedIn">Product List</button>
       <button mat-raised-button color="accent" class="btn me-4" *ngIf="!isLoggedIn" routerLink="/login">Login 
         <mat-icon>person</mat-icon>
       </button>

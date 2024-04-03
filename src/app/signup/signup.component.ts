@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component,ViewEncapsulation  } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { AuthService } from '../services/auth.service';
@@ -13,7 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class SignupComponent {
 
-  authForm: any;
+  authForm: FormGroup;
   roleResponse: any;
   roleDropDown:IDropdownSettings = {};
   errMsg: any = null;
@@ -28,14 +28,13 @@ export class SignupComponent {
     public authService: AuthService,
     public snackBar: MatSnackBar
   ){}
-// 3520B0s-
+
   ngOnInit(){
     this.authForm = this.formBuilder.group({
       username: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required, Validators.pattern('^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$')]],
       fullname: [null, Validators.required],
-      address: [null, Validators.required],
       contact: [null, [Validators.required, Validators.pattern("[0-9]{10}")]],
       roleId: [null, Validators.required]
     })
@@ -72,29 +71,22 @@ export class SignupComponent {
 
   OnFormSubmit(){
     this.btnClicked = true;
-    const { username, email, password, fullname, contact, roleId } = this.authForm.value;
-    if(username == null || email == null ||  password == null || fullname == null || contact == null || roleId == null){
-      return;
-    }
-    else{
-      // const roleid = roleId[0].RoleId;
-      const Contact = contact.toString();
-      
-      this.authService.signup(username, email, password, fullname, Contact, roleId).subscribe({
-        next: (res) => {
-          console.log(res);   
-          this.authForm.reset();
-          this.router.navigate(['/login']);
-          this.displaySnackBar("Registration successful");
-        },
-        error: (errMsg) => {
-          this.errMsg = errMsg;
-          setTimeout(() => {
-            this.errMsg = null;
-          }, 3000); 
-          console.log(errMsg);
-        }
-      })
-    }
+    if(!this.authForm.valid) return;
+    this.authForm.controls['contact'].setValue(this.authForm.controls['contact'].value?.toString());
+    this.authService.signup(this.authForm.value).subscribe({
+      next: (res) => {
+        console.log(res);   
+        this.authForm.reset();
+        this.router.navigate(['/login']);
+        this.displaySnackBar("Registration successful");
+      },
+      error: (errMsg) => {
+        this.errMsg = errMsg;
+        setTimeout(() => {
+          this.errMsg = null;
+        }, 3000); 
+        console.log(errMsg);
+      }
+    })
   }
 }
