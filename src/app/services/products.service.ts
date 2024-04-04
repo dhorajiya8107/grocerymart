@@ -23,6 +23,10 @@ export class ProductService {
         }))
     }
 
+    GetDynamicProducts(pageNo, pageSize, search){
+        return this.http.get(`${api}/GetDynamicProductList/${pageNo}/${pageSize}?searchText=${search}`);
+    }
+
     handleError(err){
         return throwError(() => err);
     }

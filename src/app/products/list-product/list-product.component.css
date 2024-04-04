@@ -12,6 +12,11 @@
     margin-top: 3rem;
     padding: 0.5rem 1.2rem;
 }
+
+/* .search{
+    width: 30rem;
+} */
+
 .table {
     width: 80%;
     margin: 6rem auto;
@@ -33,6 +38,10 @@ th {
     font-weight: bold;
     font-size: 1.1rem;
     color: white;
+}
+
+button {
+    margin: 5px auto;
 }
 
 @media only screen and (max-width: 1450px) {

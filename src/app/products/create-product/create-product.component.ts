@@ -48,11 +48,6 @@ export class CreateProductComponent {
       duration: 3000,
     })
   }
-
-  onFileSelected(event){
-    
-    
-  }
  
   formatDate(date: Date): string {
     const year = date.getFullYear();
@@ -68,12 +63,8 @@ export class CreateProductComponent {
 
   OnFormSubmit(){
     if(!this.productForm.valid) return;
-
-      const fullPath = this.productForm.value.Image;
-      const fileName = fullPath.split('\\').pop();
-      this.productForm.value.Image = fileName;
-      console.log(this.productForm.value.Image);
-      
+    
+    this.productForm.value.Image = this.productForm.value.Image.name;
       
     const manifacturedAtDate = new Date(this.productForm.value.ManifacturedAt);
     const expiresAtDate = new Date(this.productForm.value.ExpireAt);
@@ -81,7 +72,6 @@ export class CreateProductComponent {
     this.productForm.value.ExpireAt = this.formatDate(expiresAtDate);
 
     console.log(this.productForm.value);
-    console.log(this.productForm.value.Image);
     
     this.productService.addProduct(this.productForm.value).subscribe({
       next: (res) => {

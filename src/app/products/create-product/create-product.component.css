@@ -17,6 +17,14 @@ mat-card {
     height: 4rem !important;
 }
 
+:host ::ng-deep .mat-mdc-icon-button .mat-mdc-button-touch-target {
+    margin-right: -2rem !important;
+}
+
+:host ::ng-deep .ngx-mat-file-input {
+    margin-top: -0.8rem !important;
+}
+
 .title {
     margin-bottom: 2.1rem;
 }
