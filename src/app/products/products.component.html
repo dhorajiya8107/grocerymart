@@ -2,8 +2,9 @@
     <h1 class="pt-5 ps-5 text-center">All Products</h1>
     <div class="d-flex p-5 flex-wrap ms-5">
         <mat-card class="example-card me-4" *ngFor="let product of products">
-            <!-- <img mat-card-image src="{{product.Image}}" alt="Photo of a Shiba Inu"> -->
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+          <div class="image-container">
+            <img mat-card-image [src]="getImageUrl(product.Image)" alt="Product Image" class="" width="150" height="200">
+          </div>
                 <mat-card-title class="ms-3 mt-2">{{ product.ProductName }}</mat-card-title>
             <mat-card-content>
               <p>₹{{ product.Price }}</p>

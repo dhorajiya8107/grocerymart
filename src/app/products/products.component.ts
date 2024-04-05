@@ -21,4 +21,9 @@ export class ProductsComponent {
       console.log(this.products);
     })
   }
+
+  getImageUrl(imagePath: string): string {
+    const baseUrl = 'http://192.168.1.25:8010/';
+    return baseUrl + imagePath;
+  }
 }

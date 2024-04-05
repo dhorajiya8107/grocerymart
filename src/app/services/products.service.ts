@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, tap, throwError } from "rxjs";
 const api = "api_url";
@@ -17,12 +17,13 @@ export class ProductService {
     }
 
     addProduct(data){
+       
         return this.http.post(`${api}/AddNewProduct`, data)
         .pipe(catchError(this.handleError), tap((res) => {
             return res;
         }))
     }
-
+// 
     GetDynamicProducts(pageNo, pageSize, search){
         return this.http.get(`${api}/GetDynamicProductList/${pageNo}/${pageSize}?searchText=${search}`);
     }

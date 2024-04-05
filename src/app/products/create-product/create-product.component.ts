@@ -61,19 +61,38 @@ export class CreateProductComponent {
     return value < 10 ? `0${value}` : `${value}`;
   }
 
+  // onFileSelected(event){
+  //   this.productForm.patchValue({
+  //     Image: event.target.files[0]
+  //   });
+  // }
+
   OnFormSubmit(){
     if(!this.productForm.valid) return;
     
-    this.productForm.value.Image = this.productForm.value.Image.name;
-      
+    // this.productForm.value.Image = this.productForm.value.Image.name;
+    
     const manifacturedAtDate = new Date(this.productForm.value.ManifacturedAt);
     const expiresAtDate = new Date(this.productForm.value.ExpireAt);
     this.productForm.value.ManifacturedAt = this.formatDate(manifacturedAtDate);
     this.productForm.value.ExpireAt = this.formatDate(expiresAtDate);
-
-    console.log(this.productForm.value);
     
-    this.productService.addProduct(this.productForm.value).subscribe({
+    const formData = new FormData();
+    formData.append('ProductName', this.productForm.value.ProductName);
+    formData.append('ProductDescription', this.productForm.value.ProductDescription);
+    formData.append('Price', this.productForm.value.Price);
+    formData.append('BuckleNumber', this.productForm.value.BuckleNumber);
+    formData.append('Quantity', this.productForm.value.Quantity);
+    formData.append('CategoryId', this.productForm.value.CategoryId);
+    formData.append('Image', this.productForm.value.Image);
+    formData.append('ManifacturedAt', this.productForm.value.ManifacturedAt);
+    formData.append('ExpireAt', this.productForm.value.ExpireAt);
+
+
+    console.log('formData',formData);
+    console.log('productForm',this.productForm.value);
+    
+    this.productService.addProduct(formData).subscribe({
       next: (res) => {
         console.log(res);   
         this.productForm.reset();

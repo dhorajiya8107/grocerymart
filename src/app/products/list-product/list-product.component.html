@@ -1,9 +1,9 @@
 <div class="mt-5">
     <h1 class="pt-5 pb-4 text-center">List of Products</h1>
 
-    <div class="d-flex mb-3 w-50 mx-auto">
+    <div class="d-flex mb-3 search mx-auto">
         <!-- <input type="text" #pageNo (input)="onInputpageNo(pageNo.value)" placeholder="Page No." class="form-control mt-0 mb-4 me-2"> -->
-        <input type="text" #pageSizeInput (input)="onInputpageSize(pageSizeInput)" placeholder="Items Per Page" class="form-control mt-0 mb-4 me-2">
+        <!-- <input type="text" #pageSizeInput (input)="onInputpageSize(pageSizeInput)" placeholder="Items Per Page" class="form-control mt-0 mb-4 me-2"> -->
         <input type="text" #search (input)="onSearch(search.value)" placeholder="Search..." class="form-control mt-0 mb-4">
     </div>
 
@@ -51,18 +51,18 @@
             <tr mat-header-row *matHeaderRowDef="displayColumns" class="header"></tr>
             <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
         </table>
+        <h1 class="text-center my-5">{{ searchContent }}</h1>
 
         <mat-paginator 
             [length]="resLength"
-            [pageSize]="ItemPerPage"
+            [pageSize]="3"
             [pageSizeOptions]="pageSizeOptions"
             [showFirstLastButtons]="true"
             aria-label="Select page"
             (page)="onPageChange($event)">
-</mat-paginator>
+        </mat-paginator>
     </div>
 </div>
-
-
+<!-- [pageSize]="ItemPerPage" -->
 
 

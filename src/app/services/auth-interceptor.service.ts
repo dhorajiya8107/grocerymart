@@ -12,7 +12,13 @@ export class AuthInterceptor implements HttpInterceptor {
         
         let token = this.authService.getToken();
         if(token){
-            req = req.clone({ setHeaders: { Authorization: token } })
+
+            req = req.clone({ setHeaders: { 
+                Authorization: token
+            } 
+            
+        })
+        debugger;
         }
         return next.handle(req);
     }

@@ -1,11 +1,27 @@
 .example-card {
-    max-width: 300px;
+    max-width: 400px;
     margin: 15px;
   }
   
   .example-header-image {
     /* background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg'); */
     background-size: cover;
+  }
+
+  .image-container {
+    width: 300px;
+    height: 400px; 
+    display: flex;
+    justify-content: center;
+    /* overflow: hidden; */
+  }
+  
+  .image-container img {
+    width: 70%;
+    height: 70%;
+    /* margin-bottom: -15rem; */
+    object-fit: cover;
+    margin-top: 2rem;
   }
 
   /* .product-container {
