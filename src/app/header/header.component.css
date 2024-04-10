@@ -17,3 +17,8 @@
 .button {
     font-size: 0.95rem;
 }
+
+.cart-button{
+    height: 3rem;
+    width: 3rem;
+}

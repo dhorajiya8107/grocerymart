@@ -19,7 +19,7 @@ export class ListProductComponent implements OnInit , AfterViewInit{
   resLength: any;
   dynamicProductRes:any;
   search: any = "";
-  pageSizeOptions: number[] = [3,4,5,6,7];
+  pageSizeOptions: number[] = [4,5,6,7,8,9,10];
   noContentMessage: any;
   searchContent: string = null;
 
@@ -32,6 +32,8 @@ export class ListProductComponent implements OnInit , AfterViewInit{
 
 
   ngOnInit(){
+
+    this.loadDynamicProducts();
 
     // this.productService.GetDynamicProducts(1, 3).subscribe((res) => {
     //   this.response = res;
@@ -74,7 +76,7 @@ export class ListProductComponent implements OnInit , AfterViewInit{
 
   ngAfterViewInit(){
 
-    this.loadDynamicProducts();
+    // this.loadDynamicProducts();
     this.paginator?.page.pipe(
       switchMap(() => {
         let currentPage = (this.paginator?.pageIndex ?? 0) + 1;
@@ -85,87 +87,87 @@ export class ListProductComponent implements OnInit , AfterViewInit{
     ).subscribe((data) => {
       console.log(data);
       this.response = data;
-      this.resLength = this.response.ServiceObject.TotalCount;
-      this.dataSource.data = this.response.ServiceObject.Result;
+      this.resLength = this.response.TotalCount;
+      this.dataSource.data = this.response.Result;
     })
 
   }
 
   loadDynamicProducts(){
-    
-    // this.paginator?.page.pipe(
-    //   switchMap(() => {
-    //     let currentPage = (this.paginator?.pageIndex ?? 0) + 1;
-    //     let pageSize = (this.paginator?.pageSize ?? 0);
-    //     return this.productService.GetDynamicProducts(currentPage, pageSize, this.search);
-    //   }),
-    //   map(result => result)
-    // ).subscribe((data) => {
-    //   this.response = data;
-    //   this.resLength = this.response.ServiceObject.TotalCount;
-    //   this.dataSource.data = this.response.ServiceObject.Result;
-    // })
 
-    // let currentPage = (this.paginator?.pageIndex ?? 0) + 1;
-    // let pageSize = (this.paginator?.pageSize ?? 3);;
-    // this.productService.GetDynamicProducts(currentPage, pageSize, this.search).subscribe((result) => {
-    //   if(result){
-    //     this.resLength = this.response.ServiceObject.TotalCount;
-    //     this.dataSource.data = this.response.ServiceObject.Result;
-    //   }
-    // })
-  }
-// 
-  
-  onPageChange(event) {
-    // this.ItemPerPage = event.pageSize;
-    // this.pageNo = event.pageIndex;
-    // this.productService.GetDynamicProducts(this.pageNo+1, this.ItemPerPage).subscribe((res) => {
-    //   this.response = res;
-    //   console.log(this.response);
-    //   this.dataSource.data = this.response.ServiceObject.Result;
-    //   this.resLength = this.response.ServiceObject.TotalCount;
-    //   // this.cdr.detectChanges();
-    //   this.dataSource.paginator = this.paginator;
-    
-    //   console.log(this.pageNo);
-    //   console.log(this.ItemPerPage);
-    //   console.log(this.resLength);
-  
-    // })
-    // this.loadDynamicProducts();
+    let currentPage = (this.paginator?.pageIndex ?? 0) + 1;
+    let pageSize = (this.paginator?.pageSize ?? 4);;
+    this.productService.GetDynamicProducts(currentPage, pageSize, this.search).subscribe((result) => {
+      if(result){
+        this.response = result;
+        this.resLength = this.response.TotalCount;
+        this.dataSource.data = this.response.Result;
+      }
+    })
+  } 
+
+  description(desc, words){
+    if(desc.split(' ').length > words){
+      return desc.split(' ').slice(0, words).join(' ') + '...';
+    }
+    return desc;
   }
 
-  onInputpageNo(pageNo) {
-    // pageNo = parseInt(pageNo);
-    // console.log("type of pageNo",typeof pageNo);
-    // this.pageNo = pageNo;
-    // console.log("pageNo",this.pageNo);
-    // this.loadDynamicProducts();
-}
+  getImageUrl(imagePath: string): string {
+    const baseUrl = 'http://192.168.1.25:8010/';
+    return baseUrl + imagePath;
+  }
+  
+//   onPageChange(event) {
+//     // this.ItemPerPage = event.pageSize;
+//     // this.pageNo = event.pageIndex;
+//     // this.productService.GetDynamicProducts(this.pageNo+1, this.ItemPerPage).subscribe((res) => {
+//     //   this.response = res;
+//     //   console.log(this.response);
+//     //   this.dataSource.data = this.response.ServiceObject.Result;
+//     //   this.resLength = this.response.ServiceObject.TotalCount;
+//     //   // this.cdr.detectChanges();
+//     //   this.dataSource.paginator = this.paginator;
+    
+//     //   console.log(this.pageNo);
+//     //   console.log(this.ItemPerPage);
+//     //   console.log(this.resLength);
+  
+//     // })
+//     // this.loadDynamicProducts();
+//   }
 
-onInputpageSize(pageSize) {
-  // const pagesize = parseInt(pageSize.value);
-  // if(!isNaN(pagesize)){
-  //   this.ItemPerPage = pagesize;
-  //   this.loadDynamicProducts();
-  // }else{
-  //   console.log("invalid page size");  
-  // }
-}
-// 
+//   onInputpageNo(pageNo) {
+//     // pageNo = parseInt(pageNo);
+//     // console.log("type of pageNo",typeof pageNo);
+//     // this.pageNo = pageNo;
+//     // console.log("pageNo",this.pageNo);
+//     // this.loadDynamicProducts();
+// }
+
+// onInputpageSize(pageSize) {
+//   // const pagesize = parseInt(pageSize.value);
+//   // if(!isNaN(pagesize)){
+//   //   this.ItemPerPage = pagesize;
+//   //   this.loadDynamicProducts();
+//   // }else{
+//   //   console.log("invalid page size");  
+//   // }
+// }
+
+
   onSearch(search){
     console.log(search);
     this.search = search;
     let currentPage = (this.paginator?.pageIndex ?? 0) + 1;
-    let pageSize = (this.paginator?.pageSize ?? 3);;
+    let pageSize = (this.paginator?.pageSize ?? 0);;
     this.productService.GetDynamicProducts(currentPage, pageSize, search).subscribe((response) => {
       if(response){
         this.response  = response;
         console.log(this.response);
         console.log(this.response.StatusCode);
-          this.resLength = this.response.ServiceObject.TotalCount;
-          this.dataSource.data = this.response.ServiceObject.Result;
+          this.resLength = this.response.TotalCount;
+          this.dataSource.data = this.response.Result;
           console.log(this.dataSource.data);
       }else{
         this.searchContent = "No content available"; 
@@ -174,7 +176,13 @@ onInputpageSize(pageSize) {
           console.log("this.dataSource.data",this.dataSource.data);
       }
     })
-    // this.loadDynamicProducts();
+  }
+
+  deleteProduct(productId){
+    this.productService.deleteProduct(productId).subscribe((res) => {
+      console.log(res);
+      location.reload();
+    })
   }
 
   manufacturedDate(date){

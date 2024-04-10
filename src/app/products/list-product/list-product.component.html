@@ -4,11 +4,18 @@
     <div class="d-flex mb-3 search mx-auto">
         <!-- <input type="text" #pageNo (input)="onInputpageNo(pageNo.value)" placeholder="Page No." class="form-control mt-0 mb-4 me-2"> -->
         <!-- <input type="text" #pageSizeInput (input)="onInputpageSize(pageSizeInput)" placeholder="Items Per Page" class="form-control mt-0 mb-4 me-2"> -->
-        <input type="text" #search (input)="onSearch(search.value)" placeholder="Search..." class="form-control mt-0 mb-4">
+        <input type="text" #search (input)="onSearch(search.value)" placeholder="Search..." class="form-control mt-0 mb-4 shadow-none"><mat-icon class="search-icon">search</mat-icon>
     </div>
 
     <div class="table mt-0">
         <table mat-table [dataSource]="dataSource" class="table-content mat-elevation-z8">
+
+            <!-- <ng-container matColumnDef="Image">
+                <th mat-header-cell *matHeaderCellDef> Image </th>
+                <td mat-cell *matCellDef="let product">
+
+                </td>
+            </ng-container> -->
 
             <ng-container matColumnDef="ProductName">
                 <th mat-header-cell *matHeaderCellDef> Product Name </th>
@@ -17,7 +24,7 @@
 
             <ng-container matColumnDef="ProductDescription">
                 <th mat-header-cell *matHeaderCellDef> Description </th>
-                <td mat-cell *matCellDef="let product" style="width: 27rem;">{{ product.ProductDescription }}</td>
+                <td mat-cell *matCellDef="let product" style="width: 23rem;">{{ description(product.ProductDescription, 5) }}</td>
             </ng-container>
 
             <ng-container matColumnDef="Price">
@@ -42,9 +49,10 @@
 
             <ng-container matColumnDef="Actions">
                 <th mat-header-cell *matHeaderCellDef> Actions </th>
-                <td mat-cell *matCellDef="let product" style="width: 17rem;">
-                    <button mat-raised-button color="primary" class="mx-3">Update</button>
-                    <button mat-raised-button color="warn" class="mx-3">Delete</button>
+                <td mat-cell *matCellDef="let product" style="width: 20rem;">
+                    <button mat-raised-button color="primary" class="mx-3" routerLink="/createProduct/{{product.ProductId}}"><mat-icon>edit</mat-icon>Update</button>
+                    <button mat-raised-button color="warn" class="mx-3" (click)="deleteProduct(product.ProductId)"><mat-icon>delete</mat-icon>Delete</button>
+                    
                 </td>
             </ng-container>
 
@@ -55,11 +63,10 @@
 
         <mat-paginator 
             [length]="resLength"
-            [pageSize]="3"
             [pageSizeOptions]="pageSizeOptions"
             [showFirstLastButtons]="true"
             aria-label="Select page"
-            (page)="onPageChange($event)">
+        >
         </mat-paginator>
     </div>
 </div>

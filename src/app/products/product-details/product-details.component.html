@@ -1,0 +1,37 @@
+<div class="mt-5">
+    <div class="container">
+    <mat-card *ngFor="let product of productRes">
+        <div class="row py-5">
+            <div class="col-5 img-container">
+                <img mat-card-image [src]="getImageUrl(product.Image)" alt="Product Image">
+            </div>
+            <div class="col-7 pe-5 d-flex align-items-center">
+                <div class="content">
+                    <mat-card-header>
+                      <mat-card-title>{{ product.ProductName }}</mat-card-title>
+                    </mat-card-header>
+            
+                    <mat-card-content>
+                      <p class="desc">{{ product.ProductDescription }}</p>
+                      <h4 class="mb-4">Price: ₹{{ product.Price }}</h4>
+                      <p> <span class="detail">Quantity:</span> {{ product.Quantity }}</p>
+                      <p> <span class="detail">Manufatured Date:</span> {{ manuDate(product.ManifacturedAt)}}</p>
+                      <p> <span class="detail">Expiry Date:</span> {{ expireDate(product.ExpireAt)}}</p>
+                      <!-- <div class="pt-2">
+                          <button class="btn btn-outline-danger">-</button>
+                          <span class="p-2">0</span>
+                          <button class="btn btn-outline-success">+</button> <br> <br>
+                      </div> -->
+                      <button (click)="addToCart(product)" class="cart mt-2" mat-raised-button color="primary"><mat-icon class="cart-icon">shopping_cart</mat-icon>Add To Cart</button>
+                      
+                    </mat-card-content>
+            
+                    <mat-card-actions>
+                    </mat-card-actions>
+                </div>
+            </div>
+
+        </div>
+      </mat-card>
+    </div>
+</div>

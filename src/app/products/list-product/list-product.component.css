@@ -17,6 +17,11 @@
     width: 30rem;
 }
 
+.search-icon {
+    margin-left: -2rem;
+    margin-top: 0.5rem;
+}
+
 .table {
     width: 80%;
     margin: 6rem auto;

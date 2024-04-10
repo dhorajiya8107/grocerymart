@@ -11,6 +11,7 @@ export class AuthInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler){
         
         let token = this.authService.getToken();
+        // let token = token1.split(' ')[1];
         if(token){
 
             req = req.clone({ setHeaders: { 
@@ -18,7 +19,7 @@ export class AuthInterceptor implements HttpInterceptor {
             } 
             
         })
-        debugger;
+        // debugger;
         }
         return next.handle(req);
     }

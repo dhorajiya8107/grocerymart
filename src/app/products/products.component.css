@@ -1,41 +1,49 @@
+.heading {
+  padding-top: 3rem;
+}
+.products-grid {
+  gap: 9px !important;
+}
 .example-card {
     max-width: 400px;
     margin: 15px;
-  }
+    transition: transform 0.2s;
+    /* gap: 20px; */
+}
+.example-card:hover {
+  transform: scale(1.01);
+  cursor: pointer;
+}
+
+mat-card {
+  box-shadow: 0px 0px 15px rgb(197, 196, 196);
+}
   
-  .example-header-image {
-    /* background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg'); */
-    background-size: cover;
-  }
+.example-header-image {
+  background-size: cover;
+}
 
   .image-container {
     width: 300px;
     height: 400px; 
     display: flex;
     justify-content: center;
+    margin-bottom: -4rem;
     /* overflow: hidden; */
   }
   
   .image-container img {
     width: 70%;
     height: 70%;
-    /* margin-bottom: -15rem; */
     object-fit: cover;
     margin-top: 2rem;
   }
 
-  /* .product-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  p {
+    margin-bottom: 0px;
   }
-  
-  .product-card {
-    margin: 10px;
-    width: 300px;
+
+  .search-icon {
+    margin-left: -2rem;
+    margin-top: 0.5rem;
   }
-  
-  .example-header-image {
-    background-image: url('https://via.placeholder.com/150');
-    background-size: cover;
-  } */

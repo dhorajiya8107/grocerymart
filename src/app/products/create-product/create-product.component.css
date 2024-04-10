@@ -48,9 +48,11 @@ input.ng-invalid.ng-touched {
     color: red;
 }
 
-button {
-    margin-left: -21.8rem;
-    width: 20.3rem
+.btn {
+    /* margin-left: -21.8rem; */
+    /* margin-bottom: -10px; */
+    width: 20.3rem;
+    /* height: 4rem; */
 }
 
 .eye {
