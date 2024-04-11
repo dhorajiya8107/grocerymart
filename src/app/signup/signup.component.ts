@@ -35,13 +35,14 @@ export class SignupComponent {
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required, Validators.pattern('^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$')]],
       fullname: [null, Validators.required],
+      address: [null, Validators.required],
       contact: [null, [Validators.required, Validators.pattern("[0-9]{10}")]],
       roleId: [null, Validators.required]
     })
 
     this.authService.getAllRoles().subscribe((res) => {
       this.roleResponse = res;
-      this.roleResponse = this.roleResponse.ServiceObject;
+      this.roleResponse = this.roleResponse;
     })
     
     // this.roleDropDown = {

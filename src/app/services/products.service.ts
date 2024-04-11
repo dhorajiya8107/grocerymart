@@ -47,6 +47,17 @@ export class ProductService {
         return this.http.get(`${api}/GetDynamicProductList/${pageNo}/${pageSize}?searchText=${search}`);
     }
 
+    AddOrder(data){
+        return this.http.post(`${api}/AddOrder`, data)
+        .pipe(catchError(this.handleError), tap((res)=> {
+            return res;
+        }))
+    }
+
+    GetAllOrders(){
+        return this.http.get(`${api}/GetAllOrdersList`);
+    }
+
     handleError(err){
         return throwError(() => err);
     }

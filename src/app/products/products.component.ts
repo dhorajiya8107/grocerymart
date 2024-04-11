@@ -20,7 +20,6 @@ export class ProductsComponent {
       this.products = res;
       this.products =  this.products.ServiceObject;
       this.products.reverse();
-      console.log(this.products);
     })
   }
 

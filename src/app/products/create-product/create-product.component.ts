@@ -27,7 +27,7 @@ export class CreateProductComponent {
     public router: Router, 
     public snackBar: MatSnackBar,
     public productService: ProductService,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
   ){}
 
   ngOnInit(){
@@ -35,7 +35,7 @@ export class CreateProductComponent {
       ProductName: [null, Validators.required],
       ProductDescription: [null, Validators.required],
       Price: [null, Validators.required],
-      BuckleNumber: [null, Validators.required],
+      BuckleNumber: [null, [Validators.required, Validators.minLength(6)]],
       Quantity: [null, Validators.required],
       CategoryId: [null, Validators.required],
       Image: [null, Validators.required],
@@ -54,31 +54,21 @@ export class CreateProductComponent {
       this.isEditMode = true;
       this.productService.getProductById(this.id).subscribe((res) => {
         this.productRes = res[0];
-        console.log(this.productRes);
-        // this.productForm.patchValue(this.productRes);
-        this.productForm.patchValue({
-          ProductName: this.productRes.ProductName,
-          ProductDescription: this.productRes.ProductDescription,
-          Price: this.productRes.Price,
-          BuckleNumber: this.productRes.BuckleNumber,
-          Quantity: this.productRes.Quantity,
-          CategoryId: this.productRes.CategoryId,
-          Image: this.productRes.Image,
-          ManifacturedAt: new Date(this.productRes.ManifacturedAt),
-          ExpireAt: new Date(this.productRes.ExpireAt),
-          ProductId: this.productRes.ProductId
-        });
-
-        // this.productForm.value.Image.name = this.productForm.value.Image.split("\\")[2];
-        // // console.log(img);
-        
-        // console.log(this.productForm.value.Image);
+        this.productForm.patchValue(this.productRes);
 
         // this.productForm.patchValue({
-        //   Image: img
-        // })
-        
-  
+        //   ProductName: this.productRes.ProductName,
+        //   ProductDescription: this.productRes.ProductDescription,
+        //   Price: this.productRes.Price,
+        //   BuckleNumber: this.productRes.BuckleNumber,
+        //   Quantity: this.productRes.Quantity,
+        //   CategoryId: this.productRes.CategoryId,
+        //   Image: this.productRes.Image,
+        //   ManifacturedAt: new Date(this.productRes.ManifacturedAt),
+        //   ExpireAt: new Date(this.productRes.ExpireAt),
+        //   ProductId: this.productRes.ProductId
+        // });
+
       })
     }
   }
@@ -93,19 +83,12 @@ export class CreateProductComponent {
     const year = date.getFullYear();
     const month = this.padZeroes(date.getMonth() + 1);
     const day = this.padZeroes(date.getDate());
-    
     return `${year}-${month}-${day}`;
   }
 
   padZeroes(value: number): string {
     return value < 10 ? `0${value}` : `${value}`;
   }
-
-  // onFileSelected(event){
-  //   this.productForm.patchValue({
-  //     Image: event.target.files[0]
-  //   });
-  // }
 
   OnFormSubmit(){
 
@@ -130,8 +113,8 @@ export class CreateProductComponent {
       formData.append('ExpireAt', this.productForm.value.ExpireAt);
       
       this.productService.addProduct(formData).subscribe({
-        next: (res) => {
-          console.log(res);   
+        next: (res) => { 
+          console.log(res);    
           this.productForm.reset();
           this.displaySnackBar("Product added successfully");
         },
@@ -143,6 +126,7 @@ export class CreateProductComponent {
           console.log(errMsg);
         }
       })
+
     }else{
       console.log(this.isEditMode);
       if(!this.productForm.valid) return;
@@ -163,9 +147,6 @@ export class CreateProductComponent {
       formData.append('ManifacturedAt', this.productForm.value.ManifacturedAt);
       formData.append('ExpireAt', this.productForm.value.ExpireAt);
 
-      console.log(this.productForm.value);
-      
-
       this.productService.updateProduct(formData).subscribe({
         next: (res) => {
           console.log(res);   
@@ -182,7 +163,6 @@ export class CreateProductComponent {
       })
 
     }
-
     
   }
 }

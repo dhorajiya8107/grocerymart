@@ -1,18 +1,54 @@
 <div class="mt-5">
-    <h1 class="pt-5 pb-5 text-center">Cart</h1>
-    <mat-card class="product-card container mb-4" *ngFor="let product of cartData">
-      <div class="d-flex">
-        <div class="img-container">
-            <img mat-card-image [src]="getImageUrl(product.Image)" alt="Product Image">
+    <h1 class="py-5 text-center" *ngIf="!(cartData && cartData.length == 0)">Cart</h1>
+    <div class="container mb-2 d-flex">
+        <div>
+            <h5 class="ps-3" *ngIf="!(cartData && cartData.length == 0)">Product Details</h5>
         </div>
-        <div class="d-flex align-items-center justify-content-center name-div ms-3">
-            <h5>{{product.ProductName}}</h5>
+        <div class="d-flex align-items-center justify-content-end quantity-header">
+            <h5 *ngIf="!(cartData && cartData.length == 0)">Quantity</h5>
         </div>
-        <div class="d-flex align-items-center justify-content-center quantity-div ms-3">
-            <button class="btn btn-outline-danger">-</button>
-                <span class="p-2">0</span>
-            <button class="btn btn-outline-success">+</button>
+        <div class="d-flex align-items-center justify-content-center price-header">
+            <h5 *ngIf="!(cartData && cartData.length == 0)">Price</h5>
         </div>
-      </div>
+        <div class="d-flex align-items-center total-price-header">
+            <h5 *ngIf="!(cartData && cartData.length == 0)">Total Price</h5>
+        </div>
+    </div>
+    <mat-card class="product-card container mb-4" *ngFor="let product of cartData; index as i">
+         <div class="d-flex justify-content-between">
+           <a routerLink="/productDetails/{{product.ProductId}}">
+               <div class="img-container">
+                   <img mat-card-image [src]="getImageUrl(product.Image)" alt="Product Image">
+               </div>
+           </a>
+           <div class="d-flex align-items-center name-div">
+               <h5>{{product.ProductName}}</h5>
+           </div>
+           <div class="d-flex align-items-center justify-content-center quantity-div ms-5">
+               <button class="btn btn-outline-danger" (click)="updateQuantity(product, 'decrement')">-</button>
+                   <span class="p-2">{{ product.ProductQuantity }}</span>
+               <button class="btn btn-outline-success" (click)="updateQuantity(product, 'increment')">+</button>
+           </div>
+           <div class="d-flex align-items-center price-div">
+               <h5>₹{{ product.Price }}</h5>
+           </div>
+           <div class="d-flex align-items-center total-price-div">
+               <h5>₹ {{ product.Price * product.ProductQuantity }} </h5>
+           </div>
+           <div class="d-flex align-items-center justify-content-center remove-div">
+               <button class="remove btn" (click)="removeProduct(product.ProductId)" matTooltip="Remove">X</button>
+           </div>
+         </div>
     </mat-card>
+    <h1 class="text-center h1" *ngIf="cartData && cartData.length === 0">Cart is Empty</h1>
+    <div class="container d-flex justify-content-end mb-5">
+        <mat-card class="p-3 checkout-card" *ngIf="!(cartData && cartData.length == 0)">
+            <div class="d-flex justify-content-between mt-2 mx-2">
+                <h5>Total Order</h5>
+                <h5>₹{{ getTotalOrder() }}</h5>
+            </div>
+            <button mat-raised-button color="warn" class="my-3 mx-2 checkout-btn" (click)="checkOut()">Place Order</button>
+        </mat-card>
+    </div>
 </div>
+<!--  -->

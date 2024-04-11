@@ -17,6 +17,7 @@ import { MatNativeDateModule } from "@angular/material/core";
 import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from "@angular/material/sort";
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { MatSortModule } from "@angular/material/sort";
         MatNativeDateModule,
         NgxMatFileInputModule,
         MatPaginatorModule,
-        MatSortModule
+        MatSortModule,
+        MatTooltipModule
     ]
 })
 
