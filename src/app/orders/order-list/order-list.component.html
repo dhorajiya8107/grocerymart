@@ -1,0 +1,71 @@
+<div class="mt-5"  style="overflow-x: auto;">
+    <h1 class="pt-5 pb-4 text-center">List of Orders</h1>
+
+    <div class="d-flex mb-3 search mx-auto">
+        <input type="text" [(ngModel)]="searchText" #search (input)="onSearch(search.value)" placeholder="Search..." class="form-control mt-0 mb-4 shadow-none"><mat-icon class="search-icon">search</mat-icon>
+    </div>
+
+    <div class="table mt-0">
+        <table mat-table [dataSource]="dataSource" class="table-content mat-elevation-z8 mx-auto">
+              <ng-container matColumnDef="orderId">
+                  <th mat-header-cell *matHeaderCellDef> Order Id </th>
+                  <td mat-cell *matCellDef="let data">{{ data.orderObject.orderId }}</td>
+              </ng-container>
+  
+              <ng-container matColumnDef="productName">
+                  <th mat-header-cell *matHeaderCellDef> Product Name </th>
+                  <td mat-cell *matCellDef="let data">{{ data.productObject.productName }}</td>
+              </ng-container>
+  
+              <ng-container matColumnDef="quantity">
+                  <th mat-header-cell *matHeaderCellDef> Product Quantity </th>
+                  <td mat-cell *matCellDef="let data">{{ data.orderObject.quantity }}</td>
+              </ng-container>
+  
+              <ng-container matColumnDef="price">
+                  <th mat-header-cell *matHeaderCellDef> Product Price </th>
+                  <td mat-cell *matCellDef="let data">₹{{ data.productObject.price }}</td>
+              </ng-container>
+  
+              <ng-container matColumnDef="orderNumber">
+                  <th mat-header-cell *matHeaderCellDef> Order Number </th>
+                  <td mat-cell *matCellDef="let data">{{ data.orderObject.orderNumber }}</td>
+              </ng-container>
+  
+              <ng-container matColumnDef="orderDate">
+                  <th mat-header-cell *matHeaderCellDef> Order Date </th>
+                  <td mat-cell *matCellDef="let data">{{ orderDate(data.orderObject.createdAt) }}</td>
+              </ng-container>
+  
+              <ng-container matColumnDef="Address">
+                  <th mat-header-cell *matHeaderCellDef> Shipping Address </th>
+                  <td mat-cell *matCellDef="let data">{{ data.customerObject.Address }}</td>
+              </ng-container>
+  
+              <ng-container matColumnDef="orderStatus">
+                  <th mat-header-cell *matHeaderCellDef>Order Status </th>
+                  <td mat-cell *matCellDef="let data">{{ data.orderObject.orderStatus }}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let product" style="width: 20rem;">
+                    <button mat-mini-fab color="primary" class="mx-3 edit" routerLink=""><mat-icon>edit</mat-icon></button>
+                    <button mat-mini-fab color="warn" class="mx-3" ><mat-icon>delete</mat-icon></button>
+                </td>
+            </ng-container>
+  
+              <tr mat-header-row *matHeaderRowDef="displayColumns" class="header"></tr>
+              <tr mat-row *matRowDef="let row; columns:displayColumns;"></tr>
+
+  
+        </table>
+
+        <mat-paginator
+            [pageSize]="6"
+            [pageSizeOptions]="[5,7,10,15]"
+            [showFirstLastButtons]="true"       
+        >
+        </mat-paginator>
+    </div>
+</div>

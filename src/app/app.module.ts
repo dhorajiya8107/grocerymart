@@ -22,7 +22,8 @@ import { CommonModule } from '@angular/common';
 import { ListProductComponent } from './products/list-product/list-product.component';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
 import { CartComponent } from './products/cart/cart.component';
-import { OrderListComponent } from './order-list/order-list.component';
+import { OrdersComponent } from './orders/orders.component';
+import { OrderListComponent } from './orders/order-list/order-list.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { OrderListComponent } from './order-list/order-list.component';
     ListProductComponent,
     ProductDetailsComponent,
     CartComponent,
+    OrdersComponent,
     OrderListComponent
   ],
   imports: [

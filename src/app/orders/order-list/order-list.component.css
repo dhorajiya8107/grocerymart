@@ -1,0 +1,56 @@
+.main {
+    padding-top: 6rem;
+}
+.link {
+    position: absolute;
+    margin-top: 3rem;
+    left: 17rem;
+}
+.delAll{
+    position: absolute;
+    right: 21rem;
+    margin-top: 3rem;
+    padding: 0.5rem 1.2rem;
+}
+
+.search{
+    width: 30rem;
+}
+
+.search-icon {
+    margin-left: -2rem;
+    margin-top: 0.5rem;
+}
+
+.table {
+    width: 100%;
+    margin: 6rem auto;
+}
+table tr{
+    height: 4rem;
+    font-weight: bold;
+}
+.header {
+    background-color: black;
+}
+td {
+    text-align: center;
+    font-size: 1.08rem;
+    padding: 1rem 1rem;
+}
+th {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: white;
+}
+
+button {
+    margin: 5px auto;
+}
+
+@media only screen and (max-width: 1450px) {
+    .table {
+        width: 90%;
+    }
+  }

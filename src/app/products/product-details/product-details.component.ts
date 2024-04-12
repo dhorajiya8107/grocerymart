@@ -50,11 +50,10 @@ export class ProductDetailsComponent {
   }
 
   addToCart(product){
-    console.log(product);
-    
+
     let userData = JSON.parse(localStorage.getItem("user"));
-    product.UserId = userData.Userid;
     let cartData = JSON.parse(localStorage.getItem("cart")) || [];
+    product.UserId = userData.Userid;
     product.ProductQuantity = 1;
     product.TotalPrice = product.ProductQuantity * product.Price;
 
@@ -62,15 +61,16 @@ export class ProductDetailsComponent {
       this.displaySnackBar("Product is out of stock");
       return;
     }
-    cartData.forEach(data => {
-      if(data.UserId == product.UserId && data.ProductId == product.ProductId){
-        this.displaySnackBar("Product already added to cart");
-        return;
-      }else{
-        cartData.push(product);
-        localStorage.setItem('cart', JSON.stringify(cartData));
-        this.displaySnackBar("Product added to cart");
-      }     
-    });
+
+    let productExists = cartData.some(data => data.UserId === product.UserId && data.ProductId === product.ProductId)
+
+    if(productExists){
+      this.displaySnackBar("Product already added to cart");
+    }else{
+      cartData.push(product);
+      localStorage.setItem('cart', JSON.stringify(cartData));
+      this.displaySnackBar("Product added to cart");
+    }
+
   }
 }

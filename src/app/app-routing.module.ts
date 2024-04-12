@@ -10,6 +10,7 @@ import { CreateProductComponent } from './products/create-product/create-product
 import { ListProductComponent } from './products/list-product/list-product.component';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
 import { CartComponent } from './products/cart/cart.component';
+import { OrderListComponent } from './orders/order-list/order-list.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'createProduct/:id', component: CreateProductComponent, canActivate: [AuthGuard] },
   { path: 'productList', component: ListProductComponent, canActivate: [AuthGuard] },
   { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
+  { path: 'orderList', component: OrderListComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'forgotPassword', component: ForgotPasswordComponent },
