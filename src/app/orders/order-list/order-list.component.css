@@ -14,12 +14,19 @@
 }
 
 .search{
-    width: 30rem;
+    width: 27rem;
 }
 
 .search-icon {
-    margin-left: -2rem;
-    margin-top: 0.5rem;
+    margin-left: -2.3rem;
+    margin-top: 0.55rem;
+    color: rgb(139, 139, 139);
+}
+
+.searchInput {
+    height: 2.5rem;
+    border-radius: 1.2rem;
+
 }
 
 .table {
@@ -45,12 +52,17 @@ th {
     color: white;
 }
 
-button {
-    margin: 5px auto;
+
+
+:host ::ng-deep .mat-mini-fab {
+    
 }
 
 @media only screen and (max-width: 1450px) {
-    .table {
+    /* .table {
         width: 90%;
+    } */
+    button {
+        margin: 3px auto; 
     }
   }

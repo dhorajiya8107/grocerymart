@@ -61,4 +61,8 @@ export class ProductService {
     handleError(err){
         return throwError(() => err);
     }
+
+    deleteOrder(orderId){
+        return this.http.delete(`${api}/DeleteOrder?OrderId=${orderId}`)
+    }
 }

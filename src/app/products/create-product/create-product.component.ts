@@ -20,6 +20,7 @@ export class CreateProductComponent {
   id:any;
   productRes:any;
   image:any;
+  File:any = {};
 
   constructor(
     public formBuilder: FormBuilder,
@@ -38,7 +39,7 @@ export class CreateProductComponent {
       BuckleNumber: [null, [Validators.required, Validators.minLength(6)]],
       Quantity: [null, Validators.required],
       CategoryId: [null, Validators.required],
-      Image: [null, Validators.required],
+      Image: [null],
       ManifacturedAt: [null, Validators.required],
       ExpireAt: [null, Validators.required],
       ProductId: [null]
@@ -54,20 +55,24 @@ export class CreateProductComponent {
       this.isEditMode = true;
       this.productService.getProductById(this.id).subscribe((res) => {
         this.productRes = res[0];
-        this.productForm.patchValue(this.productRes);
+        // this.productForm.patchValue(this.productRes);
+        this.File = this.productRes.Image.split('\\')[2];
+        
+        const blob = new Blob([], { type: 'application/octet-stream' });
+        const file = new File([blob], this.File);
 
-        // this.productForm.patchValue({
-        //   ProductName: this.productRes.ProductName,
-        //   ProductDescription: this.productRes.ProductDescription,
-        //   Price: this.productRes.Price,
-        //   BuckleNumber: this.productRes.BuckleNumber,
-        //   Quantity: this.productRes.Quantity,
-        //   CategoryId: this.productRes.CategoryId,
-        //   Image: this.productRes.Image,
-        //   ManifacturedAt: new Date(this.productRes.ManifacturedAt),
-        //   ExpireAt: new Date(this.productRes.ExpireAt),
-        //   ProductId: this.productRes.ProductId
-        // });
+        this.productForm.patchValue({
+          ProductName: this.productRes.ProductName,
+          ProductDescription: this.productRes.ProductDescription,
+          Price: this.productRes.Price,
+          BuckleNumber: this.productRes.BuckleNumber,
+          Quantity: this.productRes.Quantity,
+          CategoryId: this.productRes.CategoryId,
+          Image: file,
+          ManifacturedAt: new Date(this.productRes.ManifacturedAt),
+          ExpireAt: new Date(this.productRes.ExpireAt),
+          ProductId: this.productRes.ProductId
+        });
 
       })
     }
@@ -89,6 +94,21 @@ export class CreateProductComponent {
   padZeroes(value: number): string {
     return value < 10 ? `0${value}` : `${value}`;
   }
+
+  // extractFilename(filepath: string): string {
+  //   if (!filepath) return '';
+  //   const parts = filepath.split('\\');
+  //   return parts[parts.length - 1]; // Get the last part which is the filename
+  // }
+
+  // onFileSelected(event: any): void {
+  //   if (event.target.files && event.target.files.length) {
+  //     const file = event.target.files[0];
+  //     this.productForm.patchValue({
+  //       Image: file.name, // Set filename in the form control
+  //     });
+  //   }
+  // }
 
   OnFormSubmit(){
 
@@ -146,6 +166,8 @@ export class CreateProductComponent {
       formData.append('Image', this.productForm.value.Image);
       formData.append('ManifacturedAt', this.productForm.value.ManifacturedAt);
       formData.append('ExpireAt', this.productForm.value.ExpireAt);
+      
+      console.log(this.productForm.value);
 
       this.productService.updateProduct(formData).subscribe({
         next: (res) => {
@@ -163,6 +185,9 @@ export class CreateProductComponent {
       })
 
     }
+
+
+   
     
   }
 }

@@ -37,4 +37,11 @@ export class OrderListComponent {
   orderDate(date){
     return date.split('T')[0];
   }
+
+  deleteOrder(orderId){
+    this.productService.deleteOrder(orderId).subscribe((res) => {
+      console.log(res);
+      location.reload();
+    })   
+  }
 }
