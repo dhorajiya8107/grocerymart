@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { ProductService } from 'src/app/services/products.service';
 
 
@@ -39,7 +38,7 @@ export class CreateProductComponent {
       BuckleNumber: [null, [Validators.required, Validators.minLength(6)]],
       Quantity: [null, Validators.required],
       CategoryId: [null, Validators.required],
-      Image: [null],
+      Image: [null, Validators.required],
       ManifacturedAt: [null, Validators.required],
       ExpireAt: [null, Validators.required],
       ProductId: [null]
@@ -55,11 +54,12 @@ export class CreateProductComponent {
       this.isEditMode = true;
       this.productService.getProductById(this.id).subscribe((res) => {
         this.productRes = res[0];
-        // this.productForm.patchValue(this.productRes);
         this.File = this.productRes.Image.split('\\')[2];
+
+        let fileType = this.getFileType(this.productRes.Image);
         
-        const blob = new Blob([], { type: 'application/octet-stream' });
-        const file = new File([blob], this.File);
+        let blob = new Blob([]);
+        let file = new File([blob], this.File, { type: fileType});
 
         this.productForm.patchValue({
           ProductName: this.productRes.ProductName,
@@ -75,6 +75,23 @@ export class CreateProductComponent {
         });
 
       })
+    }
+  }
+
+  getFileType(fileName) {
+    let extension = fileName.split('.').pop().toLowerCase();
+    switch (extension) {
+      case 'jpg':
+      case 'jpeg':
+        return 'image/jpeg';
+      case 'png':
+        return 'image/png';
+      case 'gif':
+        return 'image/gif';
+      case 'webp':
+        return 'image/webp';
+      default:
+        return 'application/octet-stream';
     }
   }
 
@@ -94,21 +111,6 @@ export class CreateProductComponent {
   padZeroes(value: number): string {
     return value < 10 ? `0${value}` : `${value}`;
   }
-
-  // extractFilename(filepath: string): string {
-  //   if (!filepath) return '';
-  //   const parts = filepath.split('\\');
-  //   return parts[parts.length - 1]; // Get the last part which is the filename
-  // }
-
-  // onFileSelected(event: any): void {
-  //   if (event.target.files && event.target.files.length) {
-  //     const file = event.target.files[0];
-  //     this.productForm.patchValue({
-  //       Image: file.name, // Set filename in the form control
-  //     });
-  //   }
-  // }
 
   OnFormSubmit(){
 
@@ -136,6 +138,7 @@ export class CreateProductComponent {
         next: (res) => { 
           console.log(res);    
           this.productForm.reset();
+          this.router.navigate(['/products']);
           this.displaySnackBar("Product added successfully");
         },
         error: (errMsg) => {
@@ -148,8 +151,8 @@ export class CreateProductComponent {
       })
 
     }else{
-      console.log(this.isEditMode);
       if(!this.productForm.valid) return;
+
       const manifacturedAtDate = new Date(this.productForm.value.ManifacturedAt);
       const expiresAtDate = new Date(this.productForm.value.ExpireAt);
       this.productForm.value.ManifacturedAt = this.formatDate(manifacturedAtDate);
@@ -166,13 +169,12 @@ export class CreateProductComponent {
       formData.append('Image', this.productForm.value.Image);
       formData.append('ManifacturedAt', this.productForm.value.ManifacturedAt);
       formData.append('ExpireAt', this.productForm.value.ExpireAt);
-      
-      console.log(this.productForm.value);
 
       this.productService.updateProduct(formData).subscribe({
         next: (res) => {
           console.log(res);   
           this.productForm.reset();
+          this.router.navigate(['/products']);
           this.displaySnackBar("Product updated successfully");
         },
         error: (errMsg) => {
@@ -183,11 +185,6 @@ export class CreateProductComponent {
           console.log(errMsg);
         }
       })
-
-    }
-
-
-   
-    
+    }  
   }
 }

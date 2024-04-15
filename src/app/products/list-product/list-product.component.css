@@ -18,8 +18,14 @@
 }
 
 .search-icon {
-    margin-left: -2rem;
-    margin-top: 0.5rem;
+    margin-left: -2.3rem;
+    margin-top: 0.55rem;
+    color: rgb(139, 139, 139);
+}
+
+.searchInput {
+    height: 2.5rem;
+    border-radius: 1.2rem;
 }
 
 .table {

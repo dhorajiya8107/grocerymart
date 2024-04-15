@@ -10,6 +10,7 @@ export class ProductsComponent {
 
   products: any;
   searchText = "";
+  allProducts:any;
 
   constructor(
     public productService: ProductService,
@@ -17,8 +18,9 @@ export class ProductsComponent {
 
   ngOnInit(){
     this.productService.getProducts().subscribe((res) => {
-      this.products = res;
-      this.products =  this.products.ServiceObject;
+      this.allProducts = res;
+      this.allProducts =  this.allProducts.ServiceObject;
+      this.products = this.allProducts;
       this.products.reverse();
     })
   }
@@ -26,5 +28,9 @@ export class ProductsComponent {
   getImageUrl(imagePath: string): string {
     const baseUrl = 'http://192.168.1.25:8010/';
     return baseUrl + imagePath;
+  }
+
+  onSearch(text) {
+    this.products = this.allProducts.filter(data => data.ProductName.toLowerCase().includes(text.toLowerCase()));
   }
 }

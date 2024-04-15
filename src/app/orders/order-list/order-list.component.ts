@@ -26,7 +26,6 @@ export class OrderListComponent {
       this.orderRes = res;
       this.dataSource.data = this.orderRes;
       this.dataSource.paginator = this.paginator;
-      console.log(this.dataSource.data);
     })
   }
 

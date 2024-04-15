@@ -9,9 +9,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class CartComponent {
 
-  cartData:any;
+  cartData:any = [];
   Userid:any;
-  allData:any;
+  allData:any = [];
   // orderRes:any;
 
   constructor(
@@ -26,12 +26,6 @@ export class CartComponent {
     this.allData = cartData;
     this.cartData = cartData;
     this.cartData = this.cartData.filter((data) => data.UserId == userData.Userid);
-    
-    // this.productService.GetAllOrders().subscribe((res) => {
-    //   this.orderRes = res;
-    //   this.orderRes = this.orderRes.filter(order => order.orderObject.customerId === this.Userid);
-    //   console.log(this.orderRes);
-    // })
   }
 
   displaySnackBar(message: string){

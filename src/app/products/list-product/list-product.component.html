@@ -4,7 +4,7 @@
     <div class="d-flex mb-3 search mx-auto">
         <!-- <input type="text" #pageNo (input)="onInputpageNo(pageNo.value)" placeholder="Page No." class="form-control mt-0 mb-4 me-2"> -->
         <!-- <input type="text" #pageSizeInput (input)="onInputpageSize(pageSizeInput)" placeholder="Items Per Page" class="form-control mt-0 mb-4 me-2"> -->
-        <input type="text" #search (input)="onSearch(search.value)" placeholder="Search..." class="form-control mt-0 mb-4 shadow-none"><mat-icon class="search-icon">search</mat-icon>
+        <input type="text" #search (input)="onSearch(search.value)" placeholder="Search product" class="searchInput form-control mt-0 mb-4 shadow-none"><mat-icon class="search-icon">search</mat-icon>
     </div>
 
     <div class="table mt-0">
@@ -62,6 +62,7 @@
 
         <mat-paginator 
             [length]="resLength"
+            [pageSize]="pageSize"
             [pageSizeOptions]="pageSizeOptions"
             [showFirstLastButtons]="true"
             aria-label="Select page"

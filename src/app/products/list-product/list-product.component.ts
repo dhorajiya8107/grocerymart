@@ -1,5 +1,4 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-// import { Component, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { ProductService } from 'src/app/services/products.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -22,6 +21,7 @@ export class ListProductComponent implements OnInit , AfterViewInit{
   pageSizeOptions: number[] = [4,5,6,7,8,9,10];
   noContentMessage: any;
   searchContent: string = null;
+  pageSize:any;
 
   constructor(
     public productService: ProductService,
@@ -40,7 +40,8 @@ export class ListProductComponent implements OnInit , AfterViewInit{
     this.paginator?.page.pipe(
       switchMap(() => {
         let currentPage = (this.paginator?.pageIndex ?? 0) + 1;
-        let pageSize = (this.paginator?.pageSize ?? 3);
+        let pageSize = (this.paginator?.pageSize ?? 5);
+        
         return this.productService.GetDynamicProducts(currentPage, pageSize, this.search);
       }),
     ).subscribe((data) => {
@@ -54,7 +55,8 @@ export class ListProductComponent implements OnInit , AfterViewInit{
   loadDynamicProducts(){
 
     let currentPage = (this.paginator?.pageIndex ?? 0) + 1;
-    let pageSize = (this.paginator?.pageSize ?? 4);;
+    let pageSize = (this.paginator?.pageSize ?? 5);
+    this.pageSize = pageSize;
     this.productService.GetDynamicProducts(currentPage, pageSize, this.search).subscribe((result) => {
       if(result){
         this.response = result;
