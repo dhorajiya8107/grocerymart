@@ -54,3 +54,13 @@ mat-card {
     border-radius: 1.2rem;
     width: 27rem;
 }
+
+.cart {
+  position: absolute;
+  right: 12px;
+  top: 23.5rem;
+}
+
+.cart-icon {
+  font-size: 1.2rem;
+}

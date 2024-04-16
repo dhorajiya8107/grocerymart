@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/services/products.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -19,7 +20,8 @@ export class ProductDetailsComponent {
     public route: ActivatedRoute,
     public http: HttpClient,
     public productService: ProductService,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    public cartService: CartService
   ){}
 
   ngOnInit(){
@@ -70,6 +72,10 @@ export class ProductDetailsComponent {
       cartData.push(product);
       localStorage.setItem('cart', JSON.stringify(cartData));
       this.displaySnackBar("Product added to cart");
+      // const currentUserCartData = cartData.filter(data => data.UserId === userData.Userid);
+      const currentCount = this.cartService.getCurrentCartItemCount();
+      const newCount = currentCount + 1;
+      this.cartService.updateCartItemCount(newCount);
     }
 
   }

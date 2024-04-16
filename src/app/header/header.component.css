@@ -21,4 +21,20 @@
 .cart-button{
     height: 2.6rem;
     width: 2.7rem;
+    position: relative;
+}
+
+#cart-item-count {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    height: 22px;
+    width: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
 }

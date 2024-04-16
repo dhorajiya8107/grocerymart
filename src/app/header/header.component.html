@@ -14,8 +14,9 @@
       <button mat-raised-button color="accent" class="button me-4" *ngIf="isLoggedIn" (click)="onLogout()">Logout
         <mat-icon>logout</mat-icon>
       </button>
-      <button mat-fab color="accent" class="cart-button me-1" *ngIf="isLoggedIn" routerLink="/cart">
-        <mat-icon>shopping_cart</mat-icon>
+      <button mat-fab color="primary" class="cart-button me-1" *ngIf="isLoggedIn" routerLink="/cart">
+        <mat-icon *ngIf="isLoggedIn" routerLink="/cart">shopping_cart</mat-icon>
+        <span id="cart-item-count">{{cartItemCount}}</span>
       </button>
     </mat-toolbar>
 </div>

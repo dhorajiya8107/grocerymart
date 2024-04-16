@@ -14,11 +14,14 @@
           <img mat-card-image [src]="getImageUrl(product.Image)" alt="Product Image" class="" width="150" height="200">
         </div>
               <mat-card-title class="ms-3 mt-2">{{ product.ProductName }}</mat-card-title>
+        </a>
           <mat-card-content>
             <p>₹{{ product.Price }}</p>
-            <p>Quantity: {{ product.Quantity }}</p>
+            <div class="d-flex justify-content-between">
+              <p>Quantity: {{ product.Quantity }}</p>
+              <button (click)="addToCart(product)" class="cart mt-2" mat-stroked-button color="primary"><mat-icon class="cart-icon">shopping_cart</mat-icon>Add</button>
+            </div>
           </mat-card-content>
-        </a>
         <!-- </div> -->
       </mat-card>
     </div>

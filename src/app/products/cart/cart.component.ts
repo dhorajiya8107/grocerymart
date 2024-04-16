@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ProductService } from 'src/app/services/products.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -16,7 +17,8 @@ export class CartComponent {
 
   constructor(
     public productService: ProductService,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    public cartService: CartService
   ){}
 
   ngOnInit(){
@@ -59,6 +61,15 @@ export class CartComponent {
     this.cartData = this.cartData.filter(product => (product.ProductId !== productId) || (product.UserId !== this.Userid));
     this.allData = this.allData.filter(product => (product.ProductId !== productId) || (product.UserId !== this.Userid));
     this.saveCart();
+    const currentCount = this.cartService.getCurrentCartItemCount();
+    const newCount = currentCount - 1;
+    this.cartService.updateCartItemCount(newCount);
+  }
+
+  updateCartItemCount(): void {
+    const cartItems = JSON.parse(localStorage.getItem('cart') || '[]');
+    const cartItemCount = cartItems.length;
+    localStorage.setItem('cartItemCount', cartItemCount.toString());
   }
 
   getTotalOrder(){
