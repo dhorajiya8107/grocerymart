@@ -29,6 +29,10 @@ import { NgxsModule } from '@ngxs/store';
 import { TodoState } from './todo/todo-state';
 import { TodoDexieComponent } from './todo-dexie/todo-dexie.component';
 import { TodoRxjsComponent } from './todo-rxjs/todo-rxjs.component';
+import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
+import { ProductsDexieComponent } from './products-dexie/products-dexie.component';
+import { ProductModelComponent } from './products-dexie/product-model/product-model.component';
+
 
 @NgModule({
   declarations: [
@@ -47,7 +51,9 @@ import { TodoRxjsComponent } from './todo-rxjs/todo-rxjs.component';
     OrderListComponent,
     TodoComponent,
     TodoDexieComponent,
-    TodoRxjsComponent
+    TodoRxjsComponent,
+    ProductsDexieComponent,
+    ProductModelComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +65,8 @@ import { TodoRxjsComponent } from './todo-rxjs/todo-rxjs.component';
     HttpClientModule,
     NgMultiSelectDropDownModule.forRoot(),
     CommonModule,
-    NgxsModule.forRoot([TodoState])
+    NgxsModule.forRoot([TodoState]),
+    NgxsStoragePluginModule.forRoot()
   ],
   providers: [
     provideAnimations(),

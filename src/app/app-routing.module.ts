@@ -14,6 +14,7 @@ import { OrderListComponent } from './orders/order-list/order-list.component';
 import { TodoComponent } from './todo/todo.component';
 import { TodoDexieComponent } from './todo-dexie/todo-dexie.component';
 import { TodoRxjsComponent } from './todo-rxjs/todo-rxjs.component';
+import { ProductsDexieComponent } from './products-dexie/products-dexie.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'todo', component: TodoComponent },
   { path: 'todo-list', component: TodoDexieComponent },
   { path: 'todolist', component: TodoRxjsComponent },
+  { path: 'products-dexie', component: ProductsDexieComponent },
   { path: '**', redirectTo: 'login', pathMatch:'full' },
 ];
 

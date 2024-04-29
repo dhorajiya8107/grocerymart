@@ -8,7 +8,7 @@
                 <mat-label>Add List</mat-label>
                 <input matInput autocomplete="off" [(ngModel)]="newItemName" />
                 </mat-form-field>
-                <button type="button" mat-raised-button color="primary" (click)="addItem()">
+                <button type="button" [disabled]="!newItemName" mat-raised-button color="primary" (click)="addItem()">
                     Add
                 </button>
             </div>

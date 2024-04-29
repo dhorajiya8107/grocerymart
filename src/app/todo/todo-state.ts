@@ -1,7 +1,8 @@
-import { Action, State, StateContext } from "@ngxs/store";
+import { Action, Select, State, StateContext } from "@ngxs/store";
 import { TodoModel } from "./types/todo";
 import { Injectable } from "@angular/core";
 import { AddItemAction, DeleteItemAction, ToggleItemAction } from "./todo-actions";
+import { Observable } from "rxjs";
 
 export interface TodoStateModel {
     items: TodoModel[];
@@ -10,7 +11,7 @@ export interface TodoStateModel {
 @State<TodoStateModel>({
     name: 'todo',
     defaults: {
-        items: JSON.parse(localStorage.getItem('todos_ngxs') || '[]'),
+        items: [],
     },
 })
 @Injectable()
@@ -18,16 +19,28 @@ export class TodoState {
 
     id:number = 0;
 
+    constructor(){}
+
+    @Select(state => state.todo.items) todoItems$: Observable<TodoModel[]>;
+
     @Action(AddItemAction)
     addItem(ctx: StateContext<TodoStateModel>, action: AddItemAction){
+
+        this.todoItems$.subscribe(items => {
+            console.log(items);
+            if(items.length > 0){
+                this.id = Math.max(...items.map(item => item.id));
+            }else{
+                this.id = 0;
+            }
+        });
+
         const {name} = action;
         // console.log("{name}" , {name}, "action" , action);
-        
-        if(!name) return;
 
         const state = ctx.getState();
         // console.log("state", state);
-        
+    
 
         const todoItem: TodoModel = {
             id: ++this.id,
@@ -40,10 +53,7 @@ export class TodoState {
             ...state,
             items: [...state.items, todoItem],
         };
-        
-
         ctx.setState(newState);
-        localStorage.setItem('todos_ngxs', JSON.stringify(newState.items));
 
         // console.log(ctx.getState());
         
@@ -75,7 +85,6 @@ export class TodoState {
         };
 
         ctx.setState(newState);
-        localStorage.setItem('todos_ngxs', JSON.stringify(newState.items));
     }
 
     @Action(DeleteItemAction)
@@ -83,12 +92,10 @@ export class TodoState {
         
         const state = ctx.getState();
         const newTodoItems =  state.items.filter((it) => it.id !== action.id);
-        console.log(newTodoItems);
         const newState = {
             items: [...newTodoItems],
         };
         ctx.setState(newState);
-        localStorage.setItem('todos_ngxs', JSON.stringify(newState.items));
         
     }
 }

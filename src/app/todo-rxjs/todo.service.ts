@@ -9,17 +9,30 @@ import { Todo } from "./todo";
 export class TodoService {
 
     todoSubject = new BehaviorSubject<Todo[]>([]);
-    // todos = this.todoSubject.asObservable();
+
     private id = 0;
 
     constructor(){
-      const storedTodos: any = localStorage.getItem('todos_rxjs');
-      if(storedTodos){
-        this.todoSubject.next(JSON.parse(storedTodos));
-      }
+      this.getId();
+    }
+
+    getId(){
+        const storedTodos: any = localStorage.getItem('todos_rxjs');
+        if(storedTodos){
+          const items: Todo[] = JSON.parse(storedTodos);
+            if(items.length > 0){
+                this.id = Math.max(...items.map(item => item.id));
+            }else{
+                this.id = 0;
+            }
+            this.todoSubject.next(JSON.parse(storedTodos));
+        }
     }
 
     addTodo(todo: string){
+
+        this.getId();
+
         const newTodo: Todo = {
             id: ++this.id,
             text: todo,
