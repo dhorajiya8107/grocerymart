@@ -98,6 +98,8 @@ export class CartComponent {
         this.allData = this.allData.filter(data => data.UserId !== this.Userid);
         this.saveCart();
         this.cartData = [];
+        const newCount = 0;
+        this.cartService.updateCartItemCount(newCount);
       },
       error: (errMsg) => {
         console.log(errMsg);

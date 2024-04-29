@@ -24,6 +24,11 @@ import { ProductDetailsComponent } from './products/product-details/product-deta
 import { CartComponent } from './products/cart/cart.component';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderListComponent } from './orders/order-list/order-list.component';
+import { TodoComponent } from './todo/todo.component';
+import { NgxsModule } from '@ngxs/store';
+import { TodoState } from './todo/todo-state';
+import { TodoDexieComponent } from './todo-dexie/todo-dexie.component';
+import { TodoRxjsComponent } from './todo-rxjs/todo-rxjs.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +44,10 @@ import { OrderListComponent } from './orders/order-list/order-list.component';
     ProductDetailsComponent,
     CartComponent,
     OrdersComponent,
-    OrderListComponent
+    OrderListComponent,
+    TodoComponent,
+    TodoDexieComponent,
+    TodoRxjsComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +58,8 @@ import { OrderListComponent } from './orders/order-list/order-list.component';
     BrowserAnimationsModule,
     HttpClientModule,
     NgMultiSelectDropDownModule.forRoot(),
-    CommonModule
+    CommonModule,
+    NgxsModule.forRoot([TodoState])
   ],
   providers: [
     provideAnimations(),

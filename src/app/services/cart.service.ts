@@ -22,6 +22,4 @@ export class CartService {
   getCurrentCartItemCount(): number {
     return this.cartItemCountSubject.value;
   }
-
-  // Other methods for adding/removing products from the cart
 }

@@ -1,0 +1,6 @@
+.completed {
+    mat-checkbox {
+        text-decoration: line-through;
+        color: grey;
+    }
+}

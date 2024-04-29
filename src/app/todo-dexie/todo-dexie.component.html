@@ -1,0 +1,30 @@
+<div class="m-5">
+    <div class="d-flex justify-content-center align-items-center"
+    style="padding-top: 10rem;">
+        <mat-card style="width: 25rem;">
+            <mat-card-title class="p-3">Todo List</mat-card-title>
+            <div>
+                <div>
+                    <mat-form-field class="mx-3" appearance="outline">
+                        <mat-label>Add List</mat-label>
+                        <input matInput autocomplete="off" [(ngModel)]="itemName" />
+                    </mat-form-field>
+                    <button type="button" (click)="addItem()" mat-raised-button color="primary" [disabled]="!itemName">
+                        Add Todo
+                    </button>
+                </div>
+            </div>
+
+            <mat-list>
+                <mat-list-item [class.completed]="todo.completed" *ngFor="let todo of todos">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <mat-checkbox color="primary" [checked]="todo.completed" (change)="toggle(todo)">
+                            {{ todo.title }}
+                        </mat-checkbox>
+                        <mat-icon style="cursor: pointer;" (click)="deleteTodo(todo.id)">close</mat-icon>
+                    </div>
+                </mat-list-item>
+            </mat-list>
+        </mat-card>
+    </div>
+</div>
