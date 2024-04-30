@@ -9,6 +9,9 @@ import {
   MatDialogClose,
 } from '@angular/material/dialog';
 import { ProductModelComponent } from './product-model/product-model.component';
+import { ProductsService } from './products.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-products-dexie',
@@ -17,12 +20,61 @@ import { ProductModelComponent } from './product-model/product-model.component';
 })
 export class ProductsDexieComponent {
 
-  constructor(public dialog: MatDialog){}
+  products: any[];
+  displayColumns: string[] = ['name', 'price', 'quantity', 'manufacturedAt', 'expireAt', 'actions'];
+  dataSource = new MatTableDataSource([]);
+  allData:any[] = [];
 
-  openDialog(){
-    const dialogRef = this.dialog.open(ProductModelComponent);
+  constructor(
+    public dialog: MatDialog,
+    private productsService: ProductsService,
+    private snackBar: MatSnackBar
+  ){}
 
-    dialogRef.afterClosed().subscribe(result => console.log(result));
+  ngOnInit(){
+    this.loadProducts();    
+  }
+
+  displaySnackBar(message: string){
+    this.snackBar.open(message, 'Close', {
+      duration: 3000,
+    })
+  }
+
+  async loadProducts(): Promise<void> {
+    this.dataSource.data = await this.productsService.getAllProducts();
+    this.allData = this.dataSource.data;
+  }
+
+  openDialog(action: string, productId?: number){
+    const dialogRef = this.dialog.open(ProductModelComponent, {
+      data: { action: action, productId: productId },
+      panelClass: 'dialog-container'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result === 'added'){
+        this.displaySnackBar("Product added successfully");
+      }else if(result === 'updated'){
+        this.displaySnackBar("Product updated successfully");
+      }
+      this.loadProducts();
+    });
+  }
+
+  async deleteProduct(id: number): Promise<void>{
+    await this.productsService.deleteProduct(id);
+    this.loadProducts();
+  }
+
+  onSearch(searchText){
+    this.dataSource.data = this.allData.filter((data) => 
+      data.name.toLowerCase().includes(searchText.toLowerCase()) ||
+      data.price.includes(searchText) ||
+      data.quantity.includes(searchText) || 
+      data.manufacturedAt.toLowerCase().includes(searchText.toLowerCase()) ||   
+      data.ExpireAt.toLowerCase().includes(searchText.toLowerCase()) 
+    )
   }
 
 }

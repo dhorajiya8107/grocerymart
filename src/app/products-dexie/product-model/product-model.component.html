@@ -1,10 +1,64 @@
-<div class="body m-4">
-    <p>product-model works!</p>
-    <mat-card>
-        <mat-card-content>
-            <form class="form" [formGroup]="productForm" (ngSubmit)="OnFormSubmit()">
-                <h2 class="title mt-3">Add Product</h2>
-            </form>
-        </mat-card-content>
-    </mat-card>
-</div>
+<div class="body my-4">
+    <form class="form" [formGroup]="productForm" (ngSubmit)="OnFormSubmit()">
+      <h5 class="title pt-4 pb-4 text-center text-white">{{ productId ? 'Update Product' : 'Add Product' }}</h5>
+  
+      <div class="row">
+        <div class="col">
+            <mat-form-field appearance="outline" style="margin-top: 1.5rem;">
+                <mat-label>Product Name</mat-label>
+                <input matInput type="text" formControlName="name">
+                <mat-error *ngIf="productForm.get('name').hasError('required')">*Product Name is required</mat-error>
+            </mat-form-field>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col">
+            <mat-form-field appearance="outline">
+              <mat-label>Price</mat-label>
+              <input matInput type="text" formControlName="price">
+              <mat-error *ngIf="productForm.get('price').hasError('required')">*Price is required</mat-error>
+            </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+            <mat-form-field appearance="outline">
+              <mat-label>Quantity</mat-label>
+              <input matInput type="text" formControlName="quantity">
+              <mat-error *ngIf="productForm.get('quantity').hasError('required')">*Quantity is required</mat-error>
+            </mat-form-field>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col">
+            <mat-form-field appearance="outline">
+              <mat-label>Manufactured At</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="manufacturedAt">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngIf="productForm.get('manufacturedAt').hasError('required')">*Manufactured date is required</mat-error>
+            </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+            <mat-form-field appearance="outline">
+              <mat-label>Expire At</mat-label>
+              <input matInput [matDatepicker]="picker1" formControlName="ExpireAt">
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+              <mat-error *ngIf="productForm.get('ExpireAt').hasError('required')">*Expiry date is required</mat-error>
+            </mat-form-field>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-end" style="margin-right: 0.7rem;">
+          <button mat-raised-button color="primary" type="submit" class="text-center">{{ productId ? 'Update' : 'Add product' }}</button>
+      </div>
+  
+    </form>
+  </div>

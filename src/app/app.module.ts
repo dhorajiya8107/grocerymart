@@ -18,7 +18,7 @@ import { ApiInterceptor } from './services/api-interceptor.service';
 import { SignupComponent } from './signup/signup.component';
 import { ProductsComponent } from './products/products.component';
 import { CreateProductComponent } from './products/create-product/create-product.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { ListProductComponent } from './products/list-product/list-product.component';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
 import { CartComponent } from './products/cart/cart.component';
@@ -72,6 +72,7 @@ import { ProductModelComponent } from './products-dexie/product-model/product-mo
     provideAnimations(),
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,27 @@
+mat-form-field {
+    width: 25rem;
+    padding: 5px 10px; 
+}
+
+button {
+    margin-bottom: 0.5rem;
+}
+
+.body {
+    width: 28rem;
+    display: flex;
+    justify-content: center;
+}
+
+.title {
+    background-color: #3f51b5;
+    margin-left: -2rem;
+    margin-right: -1.5rem;
+    margin-top: -2rem;
+}
+
+.mat-mdc-raised-button:not(:disabled){
+    border-radius: 1.2rem !important;
+}
+
+
