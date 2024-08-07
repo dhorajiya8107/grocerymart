@@ -118,5 +118,20 @@ input.ng-invalid.ng-touched {
     height: 1.5rem !important;
 }
 
-  
+footer{
+    text-align: left;
+    margin-top: 200px;
+    padding: 3px;
+    background-color: black;
+    color: white;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+a:hover {
+  text-decoration: underline;
+}
   

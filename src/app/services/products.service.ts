@@ -21,7 +21,7 @@ export class ProductService {
     }
 
     getProductById(id){
-        return this.http.get(`${api}/GetProductById?ProductId=${id}`);
+        return this.http.get(`${api}/GetProductById/${id}`);
     }
 
     addProduct(data){
@@ -40,7 +40,7 @@ export class ProductService {
     }
 
     deleteProduct(id){
-        return this.http.delete(`${api}/DeleteProduct?ProductId=${id}`);
+        return this.http.delete(`${api}/DeleteProduct/${id}`);
     }
 
     GetDynamicProducts(pageNo, pageSize, search){
@@ -63,6 +63,6 @@ export class ProductService {
     }
 
     deleteOrder(orderId){
-        return this.http.delete(`${api}/DeleteOrder?OrderId=${orderId}`)
+        return this.http.delete(`${api}/DeleteOrder/${orderId}`)
     }
 }

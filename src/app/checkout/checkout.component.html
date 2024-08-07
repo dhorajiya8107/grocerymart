@@ -1,0 +1,162 @@
+<div class="mt-5">
+    <div class="d-flex flex-wrap p-4 ms-5 products-grid">
+        <mat-card class="example-card me-4"  style="margin-left: -70px;">
+            <div class="d-flex justify-content-between">
+                <button (click)="displayCardPayment()" style="margin-bottom: 50px; margin-left: 2px;margin-top: 40px;text-align: left; padding: 10px 10px 10px 20px; border: none;width: 200px; height: 70px;">Credit/Debit Card</button>
+            </div>
+            <div class="d-flex align-items-center name-div">
+                <button (click)="displayUPI()" style="margin-bottom: 50px; margin-left: 2px;margin-top: -50px;text-align: left; padding: 10px 10px 10px 20px; border: none;width: 200px; height: 70px;">UPI</button>
+            </div>
+            <div class="d-flex align-items-center name-div">
+                <button (click)="displayFoodPayment()" style="margin-bottom: 50px; margin-left: 2px;margin-top: -50px;text-align: left; padding: 10px 10px 10px 20px; border: none;width: 200px; height: 70px;">Food cards/Pluxee</button>
+            </div>
+            <div class="d-flex justify-content-between">
+                <button (click)="displayCOD()" style="margin-bottom: 50px; margin-left: 2px;margin-top: -50px;text-align: left; padding: 10px 10px 10px 20px; border: none;width: 200px; height: 70px;">Cash on Delivery</button>
+            </div>
+        </mat-card>
+    </div>
+    <mat-card class="product-card container mb-4" style="margin-left: 14%; margin-top: -25%;" *ngIf="showCardPayment"><br>
+        <div class="d-flex justify-content-between">
+            <div class="col-50" id="textField">
+                <h4><b>Total Amount Payable <span style="margin-left: 90px;"> ₹{{  getTotalOrder() }} </span></b></h4><br>
+                <label for="fname"><b>ADD a card</b></label>
+                <div class="icon-container">
+                    <i class="fa fa-cc-visa" style="color:navy;transform: translate(-50%, -50%);"></i>
+                    <i class="fa fa-cc-amex" style="color:blue; margin-left: 5px;transform: translate(-50%, -50%);"></i>
+                    <i class="fa fa-cc-mastercard" style="color:red; margin-left: 5px;transform: translate(-50%, -50%);"></i>
+                    <i class="fa fa-cc-discover" style="color:orange; margin-left: 5px;transform: translate(-50%, -50%);"></i>
+                </div>
+                <div>
+                    <img src="data:image/jpeg;base64,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" 
+                    class="image" style="width: 400px; margin-left: 150px;margin-top: -250px;">
+                    <div class="text-overlay">
+                        <div style = "position: relative; top: -420px;left: -70px;">
+                        <p>{{paymentForm.value.cardNumber}}</p>
+                        </div>
+                        <div>
+                        <div  style = "position: relative; top: -420px;left: -70px;">
+                        <p style="font-size: 12px;">Cardholder Name</p>
+                        <p>{{paymentForm.value.cardname}}</p>
+                        </div>
+                        <div style = "position: relative; top: -490px;left: 190px;">
+                        <p style="font-size: 12px;">Valid Thruv</p>
+                        <p>{{paymentForm.value.expirymonth}}/{{paymentForm.value.expiryyear}}</p>
+                        </div>
+                    </div>
+                    </div>
+                  </div>
+                <form [formGroup]="paymentForm">
+                    <label for="expmonth"><span style="color: red;">*</span>Card Holder Name</label>
+                    <input type="text" id="expmonth" name="expmonth" formControlName="cardname" placeholder="Andrew Johnson">
+                    <label for="ccnum"><span style="color: red;">*</span>Card Number</label>
+                    <input type="text" id="ccnum" name="cardnumber" formControlName="cardNumber" placeholder="1111-2222-3333-4444" required>
+                <div class="row">
+                    <div class="col-50">
+                        <label for="expmonth"><span style="color: red;">*</span>Exp Month</label>
+                    <input type="text" id="expmonth" name="expmonth" formControlName="expirymonth" placeholder="12">
+                    </div>
+                    <div class="col-50">
+                        <label for="expyear"><span style="color: red;">*</span>Exp Year</label>
+                        <input type="text" id="expyear" name="expyear" formControlName="expiryyear" placeholder="24">
+                    </div>
+                </div>
+                </form>
+                    <label for="cvv"><span style="color: red;">*</span>CVV</label>
+                    <input type="text" id="cvv" name="cvv" placeholder="352">
+                    <p>
+                        <input type="checkbox" class="form-check-input"  (change)="validatecard($event)">Securely save this card for future payments.
+                     </p>                    
+            </div>
+        </div>
+    </mat-card>
+    <mat-card class="product-card container mb-4" style="margin-left: 14%; margin-top: -25%;" *ngIf="showUPI"><br>
+        <div class="d-flex justify-content-between">
+            <div class="col-50" id="UPI">
+                <h4><b>Total Amount Payable <span style="margin-left: 90px;"> ₹{{  getTotalOrder() }} </span></b></h4><br>
+                <label><b>UPI</b></label>
+                <form [formGroup]="upiForm">
+                <label for="ccnum"><span style="color: red;">*</span>UPI ID</label>
+                <input type="text" id="ccnum" name="cardnumber" formControlName="upiId" placeholder="Username@bankname">
+                </form>
+                <p>A payment request will be sent to this UPI ID</p>
+                <p>
+                    <input type="checkbox" class="form-check-input" (change)="validateupi($event)">Save this UPI ID for faster payments
+                </p>
+            </div>
+        </div>
+    </mat-card>
+    <mat-card class="product-card container mb-4" style="margin-left: 14%; margin-top: -25%;" *ngIf="showfoodPayment"><br>
+        <div class="d-flex justify-content-between">
+            <div class="col-50" id="food">
+                <h4><b>Total Amount Payable <span style="margin-left: 90px;"> ₹{{  getTotalOrder() }} </span></b></h4><br>
+                <label for="fname"><b>Enter Food card details</b></label>
+                <form [formGroup]="foodForm">
+                <label for="expmonth"><span style="color: red;">*</span>Card Holder Name</label>
+                <input type="text" id="expmonth" name="expmonth" formControlName="cardname" placeholder="Andrew Johnson">
+                <label for="ccnum"><span style="color: red;">*</span>Card Number</label>
+                <input type="text" id="ccnum" name="cardnumber" formControlName="cardNumber" placeholder="1111-2222-3333-4444" required>
+                <div class="row">
+                    <div class="col-50">
+                        <label for="expmonth"><span style="color: red;">*</span>Exp Month</label>
+                <input type="text" id="expmonth" name="expmonth" formControlName="expirymonth" placeholder="September">
+                    </div>
+                    <div class="col-50">
+                        <label for="expyear"><span style="color: red;">*</span>Exp Year</label>
+                        <input type="text" id="expyear" name="expyear" formControlName="expiryyear" placeholder="24">
+                    </div>
+                </div> 
+                </form>
+                <label for="cvv"><span style="color: red;">*</span>CVV</label>
+                <input type="text" id="cvv" name="cvv" placeholder="352">
+                <p>
+                    <input type="checkbox" class="form-check-input"  (change)="validatefood($event)">Securely save this food card for future payments.
+                 </p>
+            </div>
+        </div>
+    </mat-card>
+    <mat-card class="product-card container mb-4" style="margin-left: 14%; margin-top: -25%;" *ngIf="showCOD"><br>
+        <div class="d-flex justify-content-between">
+            <div class="col-50" id="COD">
+                <h4><b>Total Amount Payable <span style="margin-left: 90px;"> ₹{{  getTotalOrder() }} </span></b></h4><br>
+                <img src="https://assets.juspay.in/hyper/images/bigbasket/jp_ic_cod.png" style="width: 5%;">
+                <label style="margin-left: 6%; margin-top: -3.5%;"><b>Cash On Delivery</b></label><br><br>
+                <div style="margin-left: 6%; margin-top: -3.5%;">
+                   <p style="color: green;">Tip: To ensure a contactless delivery, we recommend you use an online payment option.</p>
+                   <p>
+                      <input type="checkbox" class="form-check-input"> Make this your default payment option
+                   </p>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+    <div id="Field" *ngIf="showCheckoutForm">
+        <form style="margin-left: 70%;">
+            <p>
+                <input type="checkbox" class="form-check-input"> Shipping address same as billing
+            </p>
+            <button mat-raised-button color="primary" class="button me-4" (click)="checkout()">Place Order & Pay</button>
+        </form>
+    </div>
+</div>
+<footer><br><br>
+    <div class="row" style="margin-left: 100px;">
+        <div class="col-6">
+          <p>The Grocery Mart</p>
+          <a href="/about-us" target="_blank" style="color: white;">About Us</a><br>
+          <a href="/privacy-policy" target="_blank" style="color: white;">Privacy Policy</a><br>
+          <a href="/terms-and-conditions" target="_blank" style="color: white;">Terms and Conditions</a><br><br><br>
+          <p>Copyright &#169; {{ currentYear }} Supermarket Grocery Supplies Pvt Ltd</p><br>
+        </div>
+        <div class="col-6">
+            <p>Help</p>
+            <a href="/FAQS" target="_blank" style="color: white;">FAQs</a><br>
+            <a href="/contact-us" target="_blank" style="color: white;">Contact US</a><br><br>
+            <button (click)="facebook('https://www.facebook.com')" style="border: none; background-color: black; color: white;"> <mat-icon>facebook</mat-icon></button>
+            <button (click)="facebook('https://mail.google.com/')" style="border: none; background-color: black; color: white;"> <mat-icon>email</mat-icon></button>
+        </div>
+    </div>
+    <div style="margin-left: 1200px;margin-top: -250px; margin-bottom: 180px;">
+        <img src="https://i.postimg.cc/7YtPVfBv/grocery-7404621-640-removebg-preview.png" width="60">
+        <span class="ms-1">The Gr<span style="color: #2B4CA0;">oce</span>ry Mart</span>
+        </div>
+      </footer>

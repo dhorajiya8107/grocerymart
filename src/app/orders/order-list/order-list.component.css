@@ -59,3 +59,20 @@ th {
         margin: 3px auto; 
     }
   }
+
+  footer{
+    text-align: left;
+    margin-top: 200px;
+    padding: 3px;
+    background-color: black;
+    color: white;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+a:hover {
+  text-decoration: underline;
+}

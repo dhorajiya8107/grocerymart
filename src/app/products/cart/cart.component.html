@@ -1,8 +1,8 @@
 <div class="mt-5">
-    <h1 class="py-5 text-center" *ngIf="cartData && !(cartData.length == 0)">Cart</h1>
+    <h1 class="py-5 text-center" *ngIf="cartData && !(cartData.length == 0)">My Cart</h1>
     <div class="container mb-2 d-flex">
         <div>
-            <h5 class="ps-3" *ngIf="cartData && !(cartData.length == 0)">Product Details</h5>
+            <h5 class="ps-3" *ngIf="cartData && !(cartData.length == 0)">Review Items</h5>
         </div>
         <div class="d-flex align-items-center justify-content-end quantity-header">
             <h5 *ngIf="cartData && !(cartData.length == 0)">Quantity</h5>
@@ -36,19 +36,58 @@
                <h5>₹ {{ product.Price * product.ProductQuantity }} </h5>
            </div>
            <div class="d-flex align-items-center justify-content-center remove-div">
-               <button class="remove btn" (click)="removeProduct(product.ProductId)" matTooltip="Remove">X</button>
+               <button class="remove btn" (click)="removeProduct(product.ProductId)" matTooltip="Remove"><mat-icon>delete</mat-icon></button>
            </div>
          </div>
     </mat-card>
     <h1 class="text-center h1" *ngIf="(cartData && cartData.length === 0) || !cartData">Cart is Empty</h1>
+    <mat-card class="product-card container mb-4">
+        <p><b>Cancellation Policy</b></p>
+        <h6 style="font-weight: 200;"><b> Orders cannot be cancelled once packed for delivery. In case of unexpected delays, a refund will be provided, if applicable.</b></h6>
+        <a href="/policy" target="_blank">Read Cancellation Policy</a>
+    </mat-card>
+    <button mat-raised-button class="button me-4" style="top: 5%; bottom: 40%; right: -7%; color: #2B4CA0;" (click)="continueshopping()"><mat-icon>keyboard_arrow_left</mat-icon> Continue Shopping</button>
     <div class="container d-flex justify-content-end mb-5">
-        <mat-card class="p-3 checkout-card" *ngIf="cartData && !(cartData.length == 0)">
-            <div class="d-flex justify-content-between mt-2 mx-2">
-                <h5>Total Order</h5>
-                <h5>₹{{ getTotalOrder() }}</h5>
+        <mat-card class="p-3 checkout-card"  *ngIf="cartData && !(cartData.length == 0)" style="top: -40px;bottom: 100px;">
+            <h3><b>Order Summary</b></h3>
+            <div class="d-flex justify-content-between mt-2">
+                <h5>Total({{getTotalItems()}} item): <span style="margin-left: 100px;"> ₹{{getTotalOrder()}} </span></h5>
             </div>
-            <button mat-raised-button color="warn" class="my-3 mx-2 checkout-btn" (click)="checkOut()">Place Order</button>
+            <div>
+            <p>Delivery & Handling Charges <span style="text-decoration: line-through;margin-left: 10px;"> ₹30 </span> <span style="color: #2B4CA0;">FREE </span></p>
+            <div>
+            <button (click)="showdetails()" *ngIf="!showshowdetails" style="color: #2B4CA0;border: none; background-color: white;" >Show Details <mat-icon>keyboard_arrow_down</mat-icon></button>
+            <button (click)="hidedetails()" *ngIf="showshowdetails" style="color: #2B4CA0;border: none; background-color: white;">Hide Details <mat-icon>keyboard_arrow_up</mat-icon></button>
+            <div *ngIf="showshowdetails">
+                <p>Delivery Charge <span style="text-decoration: line-through; margin-left: 105px;"> ₹30 </span> <span style="color: #2B4CA0;">FREE </span> </p>
+                <p style="color: #2B4CA0;">  Free for first few orders!</p>
+            </div>
+        </div>
+        </div><br>
+        <p>Total Amount Payable <span style="margin-left: 90px;"> ₹{{  getTotalOrder() }} </span></p>
+            <button mat-raised-button color="primary" class="button me-4" style="top: 5%; bottom: 40%; right: -4%;" (click)="checkOut()">Proceed to Checkout</button><br>
         </mat-card>
     </div>
 </div>
-<!--  -->
+<footer><br><br>
+    <div class="row" style="margin-left: 100px;">
+        <div class="col-6">
+          <p>The Grocery Mart</p>
+          <a href="/about-us" target="_blank" style="color: white;">About Us</a><br>
+          <a href="/privacy-policy" target="_blank" style="color: white;">Privacy Policy</a><br>
+          <a href="/terms-and-conditions" target="_blank" style="color: white;">Terms and Conditions</a><br><br><br>
+          <p>Copyright &#169; {{ currentYear }} Supermarket Grocery Supplies Pvt Ltd</p><br>
+        </div>
+        <div class="col-6">
+            <p>Help</p>
+            <a href="/FAQS" target="_blank" style="color: white;">FAQs</a><br>
+            <a href="/contact-us" target="_blank" style="color: white;">Contact US</a><br><br>
+            <button (click)="facebook('https://www.facebook.com')" style="border: none; background-color: black; color: white;"> <mat-icon>facebook</mat-icon></button>
+            <button (click)="facebook('https://mail.google.com/')" style="border: none; background-color: black; color: white;"> <mat-icon>email</mat-icon></button>
+        </div>
+    </div>
+    <div style="margin-left: 1200px;margin-top: -230px; margin-bottom: 190px;">
+        <img src="https://i.postimg.cc/7YtPVfBv/grocery-7404621-640-removebg-preview.png" width="60">
+        <span class="ms-1">The Gr<span style="color: #2B4CA0;">oce</span>ry Mart</span>
+        </div>
+      </footer>

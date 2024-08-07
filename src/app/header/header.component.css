@@ -18,6 +18,11 @@
     font-size: 0.95rem;
 }
 
+button:focus{
+    color: black;
+    box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.6); 
+}
+
 .cart-button{
     height: 2.6rem;
     width: 2.7rem;

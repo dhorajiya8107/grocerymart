@@ -1,0 +1,54 @@
+<div class="mt-5 py-5" style="margin-left: 30px;" >
+    <div>
+        <p>About Us</p><br>
+        <div>
+            <button (click)="what()" style="color: white;border: none; background-color: #7c98de; height: 40px;">What is The Grocery Mart?</button>
+            <p *ngIf="showshowdetails">
+                What is The Grocery Mart? <br>
+                The Grocery Mart (Innovative Retail Concepts Private Limited) is India’s largest online food and grocery store. With over 18,000 products and over a 1000 brands in our catalogue you will find everything you are looking for. Right from fresh Fruits and Vegetables, Rice and Dals, Spices and Seasonings to Packaged products, Beverages, Personal care products, Meats – we have it all. <br>
+                Choose from a wide range of options in every category, exclusively handpicked to help you find the best quality available at the lowest prices. Select a time slot for delivery and your order will be delivered right to your doorstep. <br>
+                You can pay online using your Credit / Debit card, UPI , Food cards/Pluxee or by cash on delivery. <br>
+                We guarantee on time delivery, and the best quality! <br>
+                Happy Shopping
+            </p>
+        </div><br>
+        <div>
+            <button (click)="why()" style="color: white;border: none; background-color: #7c98de; height: 40px;">Why should I shop at The Grocery Mart?</button>
+            <p *ngIf="showhidedetails">
+                Why should I shop at The Grocery Mart? <br>
+                The Grocery Mart allows you to walk away from the drudgery of grocery shopping and welcome an easy relaxed way of browsing and shopping for groceries. 
+                Discover new products and shop for all your food and grocery needs from the comfort of your home or office. 
+                No more getting stuck in traffic jams, paying for parking, standing in long queues and carrying heavy bags – get everything you need, when you need, right at your doorstep. 
+                Food shopping online is now easy as every product on your monthly shopping list is now available online at The Grocery Mart, India’s best online grocery store!
+            </p>
+        </div><br>
+        <div>
+            <button (click)="how()" style="color: white;border: none; background-color: #7c98de; height: 40px;">How to order?</button>
+            <p *ngIf="showhowdetails">
+                How to order?<br>
+            </p>
+        </div>
+    </div>
+</div>
+<footer><br><br>
+    <div class="row" style="margin-left: 100px;">
+        <div class="col-6">
+          <p>The Grocery Mart</p>
+          <a href="/about-us" target="_blank" style="color: white;">About Us</a><br>
+          <a href="/privacy-policy" target="_blank" style="color: white;">Privacy Policy</a><br>
+          <a href="/terms-and-conditions" target="_blank" style="color: white;">Terms and Conditions</a><br><br><br>
+          <p>Copyright &#169; {{ currentYear }} Supermarket Grocery Supplies Pvt Ltd</p><br><br>
+        </div>
+        <div class="col-6">
+            <p>Help</p>
+            <a href="/FAQS" target="_blank" style="color: white;">FAQs</a><br>
+            <a href="/contact-us" target="_blank" style="color: white;">Contact US</a><br><br>
+            <button (click)="facebook('https://www.facebook.com')" style="border: none; background-color: black; color: white;"> <mat-icon>facebook</mat-icon></button>
+            <button (click)="facebook('https://mail.google.com/')" style="border: none; background-color: black; color: white;"> <mat-icon>email</mat-icon></button>
+        </div>
+    </div>
+    <div style="margin-left: 1200px;margin-top: -250px; margin-bottom: 180px;">
+        <img src="https://i.postimg.cc/7YtPVfBv/grocery-7404621-640-removebg-preview.png" width="60">
+        <span class="ms-1">The Gr<span style="color: #2B4CA0;">oce</span>ry Mart</span>
+        </div>
+      </footer>

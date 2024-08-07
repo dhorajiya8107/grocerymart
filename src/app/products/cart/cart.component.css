@@ -103,3 +103,27 @@ a:hover {
         margin-left: -3.85rem;
     }
 }
+
+a {
+    color: #2B4CA0;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+
+  footer{
+    text-align: left;
+    margin-top: 200px;
+    padding: 3px;
+    background-color: black;
+    color: white;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+a:hover {
+  text-decoration: underline;
+}

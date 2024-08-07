@@ -24,12 +24,20 @@ export class ProductsDexieComponent {
   displayColumns: string[] = ['name', 'price', 'quantity', 'manufacturedAt', 'expireAt', 'actions'];
   dataSource = new MatTableDataSource([]);
   allData:any[] = [];
+  currentYear: number;
+
+facebook(url) {
+  // window.location = "https://www.facebook.com";
+  window.open(url, '_blank', 'noopener,noreferrer');
+}
 
   constructor(
     public dialog: MatDialog,
     private productsService: ProductsService,
     private snackBar: MatSnackBar
-  ){}
+  ){
+    this.currentYear = new Date().getFullYear();
+  }
 
   ngOnInit(){
     this.loadProducts();    

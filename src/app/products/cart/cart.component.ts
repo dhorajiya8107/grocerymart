@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ProductService } from 'src/app/services/products.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CartService } from 'src/app/services/cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -9,17 +10,27 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent {
-
+  
+  showhidedetails = false;
+  showshowdetails = false;
   cartData:any = [];
   Userid:any;
   allData:any = [];
-  // orderRes:any;
+  currentYear: number;
+
+facebook(url) {
+  // window.location = "https://www.facebook.com";
+  window.open(url, '_blank', 'noopener,noreferrer');
+}
 
   constructor(
     public productService: ProductService,
     public snackBar: MatSnackBar,
-    public cartService: CartService
-  ){}
+    public cartService: CartService,
+    public router : Router
+  ){
+    this.currentYear = new Date().getFullYear();
+  }
 
   ngOnInit(){
     var userData = JSON.parse(localStorage.getItem("user"));
@@ -37,7 +48,7 @@ export class CartComponent {
   }
 
   getImageUrl(imagePath){
-    const baseUrl = 'http://192.168.1.25:8010/';
+    const baseUrl = 'http://192.168.29.144:8010/';
     return baseUrl + imagePath;
   }
 
@@ -71,7 +82,7 @@ export class CartComponent {
     const cartItemCount = cartItems.length;
     localStorage.setItem('cartItemCount', cartItemCount.toString());
   }
-
+  
   getTotalOrder(){
     let totalOrder = 0;
     this.cartData.forEach(product => {
@@ -80,30 +91,28 @@ export class CartComponent {
     return totalOrder;
   }
 
-  checkOut(){
-    let productDataList = this.cartData.map(product => ({
-      ProductId: product.ProductId,
-      Quantity: product.ProductQuantity
-    }));
+  getTotalItems(){
+    let totalItems = 0;
+    this.cartData.forEach(product => {
+      totalItems += product.ProductQuantity
+    });
+    return totalItems;
+  }
 
-    let formatedData = {
-      CustomerId: this.Userid,
-      ProductDataList: productDataList
-    };
+  checkOut() {
+   this.displaySnackBar("Your Ordered has been Procced for Payments");
+   this.router.navigate(['/checkout']);
+  }
+  
+  continueshopping() {
+    this.router.navigate(['/products']);
+  }
 
-    this.productService.AddOrder(formatedData).subscribe({
-      next: (res) => {
-        console.log(res);
-        this.displaySnackBar("Order Successfull");
-        this.allData = this.allData.filter(data => data.UserId !== this.Userid);
-        this.saveCart();
-        this.cartData = [];
-        const newCount = 0;
-        this.cartService.updateCartItemCount(newCount);
-      },
-      error: (errMsg) => {
-        console.log(errMsg);
-      }
-    })
+  hidedetails() {
+    this.showshowdetails = false;
+  }
+
+  showdetails() {
+    this.showshowdetails = true;
   }
 }

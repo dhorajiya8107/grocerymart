@@ -32,6 +32,13 @@ import { TodoRxjsComponent } from './todo-rxjs/todo-rxjs.component';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { ProductsDexieComponent } from './products-dexie/products-dexie.component';
 import { ProductModelComponent } from './products-dexie/product-model/product-model.component';
+import { PolicyComponent } from './policy/policy.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { AboutUsComponent } from './footer/about-us/about-us.component';
+import { PrivacyPolicyComponent } from './footer/privacy-policy/privacy-policy.component';
+import { TermsAndConditionsComponent } from './footer/terms-and-conditions/terms-and-conditions.component';
+import { FAQSComponent } from './footer/faqs/faqs.component';
+import { ContactUsComponent } from './footer/contact-us/contact-us.component';
 
 
 @NgModule({
@@ -53,7 +60,14 @@ import { ProductModelComponent } from './products-dexie/product-model/product-mo
     TodoDexieComponent,
     TodoRxjsComponent,
     ProductsDexieComponent,
-    ProductModelComponent
+    ProductModelComponent,
+    PolicyComponent,
+    CheckoutComponent,
+    AboutUsComponent,
+    PrivacyPolicyComponent,
+    TermsAndConditionsComponent,
+    FAQSComponent,
+    ContactUsComponent
   ],
   imports: [
     BrowserModule,

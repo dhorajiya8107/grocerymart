@@ -10,7 +10,7 @@ export class ProductsService{
     constructor(){
         this.db = new Dexie('productsDB');
         this.db.version(1).stores({
-            products: '++id, name, price, quantity, manufacturedAt, expireAt'
+            products: '++id, name, price, quantity, manufacturedAt, expireAt, image'
         });
     }
 

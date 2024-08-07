@@ -13,12 +13,20 @@ export class ProductsComponent {
   products: any;
   searchText = "";
   allProducts:any;
+  currentYear: number;
+
+facebook(url) {
+  // window.location = "https://www.facebook.com";
+  window.open(url, '_blank', 'noopener,noreferrer');
+}
 
   constructor(
     public productService: ProductService,
     public snackBar: MatSnackBar,
     public cartService: CartService
-  ){}
+  ){
+    this.currentYear = new Date().getFullYear();
+  }
 
   ngOnInit(){
     this.productService.getProducts().subscribe((res) => {
@@ -28,9 +36,8 @@ export class ProductsComponent {
       this.products.reverse();
     })
   }
-
   getImageUrl(imagePath: string): string {
-    const baseUrl = 'http://192.168.1.25:8010/';
+    const baseUrl = 'http://192.168.29.144:8010/';
     return baseUrl + imagePath;
   }
 

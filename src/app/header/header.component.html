@@ -1,26 +1,27 @@
 <div class="navbar">
-    <mat-toolbar color="primary" class="mat-elevation-z8">
-      <mat-icon>home</mat-icon>
-      <span class="ms-1">My App</span>
-      <span class="example-spacer"></span>
-      <button routerLink="/home" mat-button class="me-3 link" *ngIf="isLoggedIn">Home</button>
-      <button routerLink="/createProduct" mat-button class="me-3 link" *ngIf="isLoggedIn">Add Product</button>
-      <button routerLink="/products" mat-button class="me-3 link" *ngIf="isLoggedIn">Products</button>
-      <button routerLink="/productList" mat-button class="me-3 link" *ngIf="isLoggedIn">Product List</button>
-      <button routerLink="/orderList" mat-button class="me-3 link" *ngIf="isLoggedIn">Order List</button>
-      <!-- <button routerLink="/todo" mat-button class="me-3 link">Todo-NGXS</button> -->
-      <!-- <button routerLink="/todolist" mat-button class="me-3 link">Todo-RXJS</button> -->
-      <!-- <button routerLink="/todo-list" mat-button class="me-3 link">Todo-Dexie</button> -->
-      <button routerLink="/products-dexie" mat-button class="me-3 link">Products</button>
-      <button mat-raised-button color="accent" class="btn me-4" *ngIf="!isLoggedIn" routerLink="/login">Login 
-        <mat-icon>person</mat-icon>
-      </button>
-      <button mat-raised-button color="accent" class="button me-4" *ngIf="isLoggedIn" (click)="onLogout()">Logout
-        <mat-icon>logout</mat-icon>
-      </button>
-      <button mat-fab color="primary" class="cart-button me-1" *ngIf="isLoggedIn" routerLink="/cart">
-        <mat-icon *ngIf="isLoggedIn" routerLink="/cart">shopping_cart</mat-icon>
-        <span id="cart-item-count">{{cartItemCount}}</span>
-      </button>
-    </mat-toolbar>
+  <mat-toolbar >
+    <!-- <mat-icon>home</mat-icon> -->
+     <img src="https://i.postimg.cc/7YtPVfBv/grocery-7404621-640-removebg-preview.png" width="60">
+    <span class="ms-1">The Gr<span style="color: #2B4CA0;">oce</span>ry Mart</span>
+    <span class="example-spacer"></span>
+    <button routerLink="/home" mat-button class="me-3 link" *ngIf="isLoggedIn" mat-raised-button color="primary" class="button me-4"><mat-icon>home</mat-icon>Home</button>
+    <button routerLink="/createProduct" mat-button class="me-3 link" *ngIf="isLoggedIn" mat-raised-button color="primary" class="button me-4">Add Product</button>
+    <button routerLink="/products" mat-button class="me-3 link" *ngIf="isLoggedIn" mat-raised-button color="primary" class="button me-4">Products</button>
+    <button routerLink="/productList" mat-button class="me-3 link" *ngIf="isLoggedIn" mat-raised-button color="primary" class="button me-4">Product List</button>
+    <button routerLink="/orderList" mat-button class="me-3 link" *ngIf="isLoggedIn" mat-raised-button color="primary" class="button me-4">Order List</button>
+    <!-- <button routerLink="/todo" mat-button class="me-3 link">Todo-NGXS</button> -->
+    <!-- <button routerLink="/todolist" mat-button class="me-3 link">Todo-RXJS</button> -->
+    <!-- <button routerLink="/todo-list" mat-button class="me-3 link">Todo-Dexie</button> -->
+    <button routerLink="/products-dexie" mat-button class="me-3 link" mat-raised-button color="primary" class="button me-4">Products</button>
+    <button mat-raised-button color="primary" class="btn me-4" *ngIf="!isLoggedIn" routerLink="/login">Login 
+      <mat-icon>person</mat-icon>
+    </button>
+    <button mat-raised-button color="primary" class="button me-4" *ngIf="isLoggedIn" (click)="onLogout()">Logout
+      <mat-icon>logout</mat-icon>
+    </button>
+    <button mat-fab color="primary" class="cart-button me-1" *ngIf="isLoggedIn" routerLink="/cart">
+      <mat-icon *ngIf="isLoggedIn" routerLink="/cart">shopping_cart</mat-icon>
+      <span id="cart-item-count">{{cartItemCount}}</span>
+    </button>
+  </mat-toolbar>
 </div>

@@ -8,12 +8,13 @@
     
     <div class="d-flex flex-wrap p-4 ms-5 products-grid">
       <mat-card class="example-card me-4" *ngFor="let product of products">
-        <!-- <div *ngIf="(product.ProductName.toLowerCase()).includes(searchText.value.toLowerCase())"> -->
+        <!-- <div *ngIf="(products.ProductName.toLowerCase()).includes(searchText.value.toLowerCase())"></div> -->
         <a routerLink="/productDetails/{{product.ProductId}}" class="text-decoration-none text-dark">
         <div class="image-container">
           <img mat-card-image [src]="getImageUrl(product.Image)" alt="Product Image" class="" width="150" height="200">
         </div>
               <mat-card-title class="ms-3 mt-2">{{ product.ProductName }}</mat-card-title>
+              <p class="ms-3 mt-2">{{ product.ProductDescription | slice:0:22 }}</p>
         </a>
           <mat-card-content>
             <p>₹{{ product.Price }}</p>
@@ -24,5 +25,29 @@
           </mat-card-content>
         <!-- </div> -->
       </mat-card>
+      
     </div>
 </div>
+
+<footer><br><br>
+  <div class="row" style="margin-left: 100px;">
+      <div class="col-6">
+        <p>The Grocery Mart</p><br>
+        <a href="/about-us" target="_blank" style="color: white;">About Us</a><br>
+        <a href="/privacy-policy" target="_blank" style="color: white;">Privacy Policy</a><br>
+        <a href="/terms-and-conditions" target="_blank" style="color: white;">Terms and Conditions</a><br><br><br>
+        <p>Copyright &#169; {{ currentYear }} Supermarket Grocery Supplies Pvt Ltd</p><br><br>
+      </div>
+      <div class="col-6">
+          <p>Help</p><br>
+          <a href="/FAQS" target="_blank" style="color: white;">FAQs</a><br>
+          <a href="/contact-us" target="_blank" style="color: white;">Contact US</a><br><br>
+          <button (click)="facebook('https://www.facebook.com')" style="border: none; background-color: black; color: white;"> <mat-icon>facebook</mat-icon></button>
+          <button (click)="facebook('https://mail.google.com/')" style="border: none; background-color: black; color: white;"> <mat-icon>email</mat-icon></button>
+      </div>
+  </div>
+  <div style="margin-left: 1200px;margin-top: -250px; margin-bottom: 190px;">
+    <img src="https://i.postimg.cc/7YtPVfBv/grocery-7404621-640-removebg-preview.png" width="60">
+    <span class="ms-1">The Gr<span style="color: #2B4CA0;">oce</span>ry Mart</span>
+    </div>
+    </footer>

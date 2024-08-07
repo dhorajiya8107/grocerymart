@@ -13,11 +13,20 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 })
 export class TodoComponent {
 
+  currentYear: number;
+
+facebook(url) {
+  // window.location = "https://www.facebook.com";
+  window.open(url, '_blank', 'noopener,noreferrer');
+}
+
   @Select(TodoSelectors.todoItems) todoItems$!: Observable<TodoModel[]>;
 
   newItemName!: string;
 
-  constructor(private store: Store){}
+  constructor(private store: Store){
+    this.currentYear = new Date().getFullYear();
+  }
 
   trackById(index: number, item:TodoModel): number {
     return item.id;

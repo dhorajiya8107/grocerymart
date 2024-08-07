@@ -32,7 +32,7 @@ export class ProductModelComponent {
       price: [null, Validators.required],
       quantity: [null, Validators.required],
       manufacturedAt: [null, Validators.required],
-      ExpireAt: [null, Validators.required]
+      ExpireAt: [null, Validators.required],
     });
 
     if(this.action === 'edit'){
@@ -42,16 +42,16 @@ export class ProductModelComponent {
 
   async loadProductDetails(): Promise<void> {
     const product: any = await this.productsService.getProductById(this.productId);
+
     if(product){
-      console.log(product);
       this.productForm.patchValue({
         name: product.name,
         price: product.price,
         quantity: product.quantity,
         manufacturedAt: new Date(product.manufacturedAt),
-        ExpireAt: new Date(product.ExpireAt)
+        ExpireAt: new Date(product.ExpireAt),
+
       });
-      
     }
   }
 

@@ -41,3 +41,20 @@ p {
     /* height: 100%; */
     object-fit: cover; 
 }
+
+footer{
+    text-align: left;
+    margin-top: 200px;
+    padding: 3px;
+    background-color: black;
+    color: white;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+a:hover {
+  text-decoration: underline;
+}

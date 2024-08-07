@@ -12,10 +12,18 @@ export class TodoDexieComponent {
 
   itemName: string;
   todos: Todo[] = [];
+  currentYear: number;
+
+facebook(url) {
+  // window.location = "https://www.facebook.com";
+  window.open(url, '_blank', 'noopener,noreferrer');
+}
 
   constructor(
     private todoService: TodoService,
-  ){}
+  ){
+    this.currentYear = new Date().getFullYear();
+  }
 
   ngOnInit(){
     this.loadTodos();

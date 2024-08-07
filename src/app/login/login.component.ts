@@ -22,7 +22,7 @@ export class LoginComponent {
     public authService: AuthService,
     public snackBar: MatSnackBar
   ){}
-// 3520B0s-
+  
   ngOnInit(){
     this.authForm = this.formBuilder.group({
       email: [null, [Validators.required, Validators.email]],

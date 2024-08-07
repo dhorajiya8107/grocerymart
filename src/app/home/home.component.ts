@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,10 +8,19 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  highlightercolor = 'black';
+  currentYear: number;
+
+facebook(url) {
+  // window.location = "https://www.facebook.com";
+  window.open(url, '_blank', 'noopener,noreferrer');
+}
 
   username:any;
 
-  constructor(public authService: AuthService){}
+  constructor(public authService: AuthService, public router:Router){
+    this.currentYear = new Date().getFullYear();
+  }
 
   ngOnInit(){
 
@@ -20,5 +30,10 @@ export class HomeComponent {
     this.username = user.Username;
     
   }
+  
+  Shopnow(){
+    this.router.navigate(['/products']);
+  }
+  
 
 }

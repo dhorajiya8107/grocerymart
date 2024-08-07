@@ -12,6 +12,13 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class ProductDetailsComponent {
 
+  currentYear: number;
+
+facebook(url) {
+  // window.location = "https://www.facebook.com";
+  window.open(url, '_blank', 'noopener,noreferrer');
+}
+
   id:any;
   productRes:any;
 
@@ -22,7 +29,9 @@ export class ProductDetailsComponent {
     public productService: ProductService,
     public snackBar: MatSnackBar,
     public cartService: CartService
-  ){}
+  ){
+    this.currentYear = new Date().getFullYear();
+  }
 
   ngOnInit(){
     this.id = this.route.snapshot.paramMap.get('id');
@@ -39,7 +48,7 @@ export class ProductDetailsComponent {
   }
 
   getImageUrl(imagePath){
-    const baseUrl = 'http://192.168.1.25:8010/';
+    const baseUrl = 'http://192.168.29.144:8010/';
     return baseUrl + imagePath;
   }
 

@@ -12,13 +12,20 @@ import { map, switchMap } from 'rxjs';
 })
 export class ListProductComponent implements OnInit , AfterViewInit{
 
+  currentYear: number;
+
+facebook(url) {
+  // window.location = "https://www.facebook.com";
+  window.open(url, '_blank', 'noopener,noreferrer');
+}
+
   dataSource = new MatTableDataSource([]);
   displayColumns: string[] = ['ProductName','ProductDescription','Price','Quantity','ManifacturedAt','ExpireAt','Actions'];
   response: any;
   resLength: any;
   dynamicProductRes:any;
   search: any = "";
-  pageSizeOptions: number[] = [4,5,6,7,8,9,10];
+  pageSizeOptions: number[] = [1,2,3,4,5,6,7,8,9,10];
   noContentMessage: any;
   searchContent: string = null;
   pageSize:any;
@@ -26,7 +33,9 @@ export class ListProductComponent implements OnInit , AfterViewInit{
   constructor(
     public productService: ProductService,
     public http: HttpClient,
-  ){}
+  ){
+    this.currentYear = new Date().getFullYear();
+  }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 

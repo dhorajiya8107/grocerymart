@@ -10,8 +10,16 @@ export class TodoRxjsComponent {
 
   newItemName: string;
   todos = this.todoService.todoSubject;
+  currentYear: number;
 
-  constructor(private todoService: TodoService){}
+facebook(url) {
+  // window.location = "https://www.facebook.com";
+  window.open(url, '_blank', 'noopener,noreferrer');
+}
+
+  constructor(private todoService: TodoService){
+    this.currentYear = new Date().getFullYear();
+  }
 
   addItem(){
     this.todoService.addTodo(this.newItemName);

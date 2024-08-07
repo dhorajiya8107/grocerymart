@@ -13,6 +13,7 @@ import { TodoService } from 'src/app/todo-dexie/todo.service';
   styleUrls: ['./create-product.component.css'],
 })
 export class CreateProductComponent {
+  
   productForm: FormGroup;
   errMsg: any = null;
   catResponse: any;
@@ -21,6 +22,12 @@ export class CreateProductComponent {
   productRes:any;
   image:any;
   File:any = {};
+  currentYear: number;
+
+facebook(url) {
+  // window.location = "https://www.facebook.com";
+  window.open(url, '_blank', 'noopener,noreferrer');
+}
 
   constructor(
     public formBuilder: FormBuilder,
@@ -29,7 +36,9 @@ export class CreateProductComponent {
     public snackBar: MatSnackBar,
     public productService: ProductService,
     public route: ActivatedRoute,
-  ){}
+  ){
+    this.currentYear = new Date().getFullYear();
+  }
 
   ngOnInit(){
     this.productForm = this.formBuilder.group({

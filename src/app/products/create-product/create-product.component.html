@@ -53,16 +53,16 @@
                 <ngx-mat-file-input type="file" class="file" formControlName="Image" accept="image/*">
                 </ngx-mat-file-input>
                 <mat-error *ngIf="productForm.get('Image').errors?.['required']">*Image is Required</mat-error>
-             </mat-form-field>
-    
+              </mat-form-field>
+
               <mat-form-field>
                 <mat-label>Manufactured At</mat-label>
                 <input matInput [matDatepicker]="picker" formControlName="ManifacturedAt">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
                 <mat-error *ngIf="productForm.get('ManifacturedAt').hasError('required')">Manufacture Date is required</mat-error>
-              </mat-form-field>     
-              
+              </mat-form-field>
+
               <mat-form-field>
                 <mat-label>Expires At</mat-label>
                 <input matInput [matDatepicker]="picker1" formControlName="ExpireAt">
@@ -80,3 +80,25 @@
       </mat-card-content>
     </mat-card>
   </div>
+  <footer><br><br>
+    <div class="row" style="margin-left: 100px;">
+        <div class="col-6">
+          <p>The Grocery Mart</p>
+          <a href="/about-us" target="_blank" style="color: white;">About Us</a><br>
+          <a href="/privacy-policy" target="_blank" style="color: white;">Privacy Policy</a><br>
+          <a href="/terms-and-conditions" target="_blank" style="color: white;">Terms and Conditions</a><br><br><br>
+          <p>Copyright &#169; {{ currentYear }} Supermarket Grocery Supplies Pvt Ltd</p><br><br>
+        </div>
+        <div class="col-6">
+            <p>Help</p>
+            <a href="/FAQS" target="_blank" style="color: white;">FAQs</a><br>
+            <a href="/contact-us" target="_blank" style="color: white;">Contact US</a><br><br>
+            <button (click)="facebook('https://www.facebook.com')" style="border: none; background-color: black; color: white;"> <mat-icon>facebook</mat-icon></button>
+            <button (click)="facebook('https://mail.google.com/')" style="border: none; background-color: black; color: white;"> <mat-icon>email</mat-icon></button>
+        </div>
+    </div>
+    <div style="margin-left: 1200px;margin-top: -250px; margin-bottom: 180px;">
+      <img src="https://i.postimg.cc/7YtPVfBv/grocery-7404621-640-removebg-preview.png" width="60">
+      <span class="ms-1">The Gr<span style="color: #2B4CA0;">oce</span>ry Mart</span>
+      </div>
+      </footer>

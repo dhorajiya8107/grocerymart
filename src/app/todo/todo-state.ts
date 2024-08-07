@@ -36,10 +36,9 @@ export class TodoState {
         });
 
         const {name} = action;
-        // console.log("{name}" , {name}, "action" , action);
 
         const state = ctx.getState();
-        // console.log("state", state);
+        console.log("state", state);
     
 
         const todoItem: TodoModel = {
@@ -47,12 +46,12 @@ export class TodoState {
             isDone: false,
             title: name,
         };
-        // console.log("todoItem", todoItem);
 
         const newState = {
-            ...state,
             items: [...state.items, todoItem],
         };
+        console.log(newState);
+        
         ctx.setState(newState);
 
         // console.log(ctx.getState());

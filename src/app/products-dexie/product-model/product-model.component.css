@@ -18,6 +18,7 @@ button {
     margin-left: -2rem;
     margin-right: -1.5rem;
     margin-top: -2rem;
+    padding-top: 1.78rem;
 }
 
 .mat-mdc-raised-button:not(:disabled){

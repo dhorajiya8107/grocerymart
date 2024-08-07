@@ -10,14 +10,24 @@ import { ProductService } from 'src/app/services/products.service';
 })
 export class OrderListComponent {
 
+
+
   dataSource =  new MatTableDataSource([]);
   displayColumns: string[] = ['orderId','productName','quantity','price','orderNumber','orderDate','Address','orderStatus','actions'];
   orderRes:any;
   searchText: string = '';
+  currentYear: number;
+
+facebook(url) {
+  // window.location = "https://www.facebook.com";
+  window.open(url, '_blank', 'noopener,noreferrer');
+}
 
   constructor(
     public productService: ProductService
-  ){}
+  ){
+    this.currentYear = new Date().getFullYear();
+  }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
