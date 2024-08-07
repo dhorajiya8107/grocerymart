@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { BehaviorSubject, catchError, tap, throwError } from "rxjs";
 import { User } from "../Model/User";
-const api = "api_url";
+const api = "http://192.168.29.144:8010/Api/PDMS";
 
 @Injectable({
     providedIn: 'root'
